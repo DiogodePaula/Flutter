@@ -1,3 +1,158 @@
 Samples: https://flutter.github.io/samples/#?type=sample
 
 Flutter base widgets: https://docs.flutter.dev/ui/widgets/basics
+
+=> Como funciona o Flutter?
+A estrutura do Flutter funciona por meio de widgets (ou componentes). E o que são widgets?
+
+Os widgets são os “blocos” de construção, como um lego ou quebra-cabeça, que encaixamos para 
+montar as telas de um aplicativo.
+
+Esses widgets são escritos com Dart, uma linguagem do paradigma Orientação a objetos. Com o 
+Dart no núcleo, criamos aplicações mais otimizadas para diversos dispositivos do que outras 
+ferramentas híbridas, por exemplo, o React Native.
+
+=> Por que utilizar Flutter?
+Se você precisa de aplicações para diversas plataformas e não quer dar manutenção em três 
+linguagens diferentes, o Flutter é para você! Em última análise, os motivos para adoção do 
+Flutter podem depender; avaliar o objetivo da aplicação é indispensável.
+
+Afinal, todo framework apresenta vantagens e desvantagens. Não há canivete suiço em tecnologia, 
+e o Flutter não foge à regra.
+
+=> Como utilizar o Flutter?
+Vamos considerar que você tenha quase tudo o que é necessário para começar o desenvolvimento com 
+Flutter (ambiente de desenvolvimento com emulador e IDE).
+
+=> Como podemos iniciar a escrita da nossa aplicação?
+
+Precisamos instalar, no computador, as seguintes ferramentas:
+
+1) Flutter SDK: o arquivo que permite utilizar a ferramenta;
+2) Android Studio e/ou xCode: contém as ferramentas de build para testar e subir a aplicação em 
+   dispositivos Android e iOS (além de servirem como IDEs);
+3) IDE: é o programa onde você vai escrever o código. Há diversas opções de IDE no mercado para escolher: 
+   Visual Studio Code (que utilizaremos neste artigo), Android Studio, Xcode;
+4) Emulador: necessário para rodar e testar o aplicativo que pretendemos criar.
+
+=> Como criar um projeto no Flutter?
+flutter create nome_da_aplicacao
+
+=> Estrutura de arquivos e pastas em um projeto Flutter
+É de grande importância que nosso projeto seja bem estruturado e organizado para facilitar a manutenção e o 
+entendimento do código.
+
+Uma das boas práticas de organização do projeto é deixar, na raiz da pasta lib, apenas o arquivo main.dart.
+
+As telas, os temas e outros componentes devem ficar em outras pastas dentro da lib.
+
+Dentro do arquivo main.dart, inserimos apenas a estrutura mínima para chamar o app. E a página inicial deve 
+ser importada da pasta screens.
+
+Dentro da pasta lib, vemos duas pastas:
+
+componentes onde ficarão os componentes e seções da aplicação;
+screens, onde ficam as telas da aplicação. A ideia é que as telas importem os componentes necessários para a sua 
+estrutura.
+O arquivo main.dart inicializa a aplicação e chama a página inicial home.dart.
+
+=> Continuous Integration (CI)
+A ideia principal de CI é que diversas equipes trabalhem em uma única estrutura de código ou repositório. Qualquer 
+adição, manutenção ou remoção realizada por uma equipe será implementada no produto em produção.
+
+Um exemplo seria de duas equipes trabalhando em um app de um banco online: Uma equipe (A) será responsável por 
+desenvolver a tela, mais especificamente a parte visual do aplicativo; Uma outra equipe (B) será responsável por 
+adicionar um novo tipo de conta dentro do banco.
+
+Ambas equipes trabalham em tarefas distintas, mas, no final, ambas as funcionalidades irão compor o único app de 
+banco.
+
+O ponto é que as equipes são incentivadas a fazer pequenos merges (junções de código) para que trabalhem na mesma 
+base de código.
+
+Assim, qualquer mudança, feita por uma equipe, que acabe quebrando o código, pode ser facilmente ajustada por que 
+há menos código novo para olhar do que um merge gigantesco no final do mês, ou seja, fica mais fácil identificar 
+o bug ou erro.
+
+Quando falamos de integração contínua, falamos dessas integrações do código novo feitas de forma mais regular e 
+menos espaçada: o merge vira uma prática diária em vez de semanal ou mensal.
+
+CI é uma técnica avançada que facilita a identificação e correção de erros, impactando diretamente na qualidade do 
+código e diminuindo a chance de que erros cheguem na mão dos usuários de um aplicativo.
+
+Na prática, a CI requer a automatização dos processos de teste e build do aplicativo. Ela envolve os seguintes 
+passos:
+
+Controle de versão: Todos os códigos-fonte são mantidos em um sistema de controle de versão, como o Git;
+Integração regular: Pessoas desenvolvedoras integram suas mudanças no repositório central várias vezes ao dia;
+Automatização de build: Cada integração dispara automaticamente uma build do sistema, garantindo que as mudanças não quebrem a aplicação;
+Testes automatizados: Junto com a build, são executados testes automatizados - dos unitários aos de integração e UI, dependendo da configuração;
+Feedback imediato: Se a build ou os testes falharem, a equipe é notificada imediatamente, permitindo uma rápida correção de problemas.
+
+=> Continuous Delivery (CD)
+O conceito de CD assemelha-se ao de CI, mas o contexto em que se aplica é um pouco diferente. Vamos usar o mesmo 
+exemplo das duas equipes trabalhando 
+no app de online banking.
+
+Tal como CI ajuda a identificar erros e conflitos no código e suaviza esse processo, o CD automatiza e simplifica 
+a entrega do projeto em lojas como Google Play (Android) ou App Store (iOS).
+
+Em vez de entregar grandes features a cada três meses (um exemplo arbitrário), CD recomenda entregas menores e 
+constantes. Dessa forma, você e as demais equipes mantêm um ritmo constante de entrega, oferecendo novas funcionalidades, 
+correções e atualizações às pessoas usuárias finais de forma rápida e confiável.
+
+Na prática, dois processos são automatizados: distribuição para testes internos e lançamentos nas lojas.
+
+O processo de CD aproveita a base estabelecida pela CI, adicionando os seguintes passos:
+
+Automatização do pipeline de lançamento: Após a CI concluir a build e os testes com sucesso, o código é automaticamente 
+encaminhado através de várias etapas de preparação para lançamento, como testes de aceitação da pessoa usuária, testes de carga e performance;
+
+Ambiente de staging (“ensaio”): O código pronto para lançamento é implantado em um ambiente de staging que replica o ambiente de produção, 
+onde é revisado antes do lançamento;
+
+Lançamento manual ou automático: Dependendo da política da empresa, o lançamento é feito manualmente por um membro da equipe ou automaticamente, 
+assim que o código passar por todas as verificações;
+
+Rollbacks automáticos: Se problemas forem detectados após o lançamento, o processo de CD pode automaticamente reverter o aplicativo para a última 
+versão estável, minimizando o impacto para as pessoas usuárias finais. Esse processo de reversão é chamado de rollback.
+
+=> Server Driven UI
+Avançando ainda mais em técnicas e conceitos no Flutter, há o server driven UI (Interface orientada por servidor).
+
+Server driven UI é uma arquitetura de desenvolvimento em que toda a responsabilidade de construir telas de um aplicativo fica no servidor.
+
+=> Interface local
+O conceito inicial e básico, que aprendemos até o momento, é que nós escrevemos os widgets e eles aparecem em nosso dispositivo.
+
+Mas tudo isso tem sido feito dentro do próprio aplicativo. Praticamente a única maneira que a pessoa pode ter seu aplicativo atualizado é 
+baixando uma nova versão na Play Store (Google) ou Apple Store (Apple).
+
+No entanto, do lado da pessoa desenvolvedora, o processo de atualizar um aplicativo na loja leva dias. É aí que entra o server driven UI.
+
+=> Interface no servidor
+Com a arquitetura server driven UI, o aplicativo faz uma requisição para o servidor, solicitando uma descrição de interface.
+
+Geralmente, essa resposta vem no formato de árvore de widgets em um objeto JSON. Com essa resposta, o aplicativo sabe como desenhar e renderizar 
+a interface na tela do dispositivo.
+
+Um exemplo seria em um aplicativo de notícias: server driven UI pode ser usada para personalizar a interface do usuário para cada usuário. O 
+servidor pode enviar ao aplicativo uma descrição JSON da interface do usuário personalizada, com base nas preferências da pessoa usuária e no 
+conteúdo da notícia que ela está visualizando.
+
+Qualquer alteração feita no arquivo JSON gera mudanças imediatas no aplicativo.
+
+Dessa forma, podemos implementar pequenas atualizações no aplicativo e dispensar a atualização do aplicativo na loja. O ciclo de atualização de 
+um aplicativo na loja pode demorar de 1 a 5 dias, enquanto server driven UI reduz esse tempo para minutos.
+
+No entanto, essas atualizações mais rápidas são menores, por exemplo, mudar a cor de botão, alterar a ordem de um menu de opções etc.
+
+Mudanças maiores ou estruturais no projeto ainda necessitam de atualização na loja de aplicativos, porém server driven UI facilita a vida da 
+pessoa desenvolvedora.
+
+Veja as vantagens de server driven UI no Flutter:
+
+Maior flexibilidade e reutilização: A lógica de negócios e a UI são separadas, permitindo maior flexibilidade na criação e reutilização de componentes da interface;
+Desenvolvimento mais rápido: A interface pode ser prototipada e modificada rapidamente no servidor, sem a necessidade de recompilar ou atualizar o aplicativo Flutter;
+Melhorias no desempenho: O servidor pode otimizar a interface para diferentes dispositivos e redes, resultando em melhor desempenho geral;
+Dados em tempo real: A interface pode ser atualizada em tempo real com base em dados do servidor, proporcionando uma experiência mais dinâmica para a pessoa usuária.
