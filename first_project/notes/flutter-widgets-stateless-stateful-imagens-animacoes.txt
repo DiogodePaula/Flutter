@@ -1,0 +1,43 @@
+Nesta aula, aprendemos sobre os Widgets, que são a base do Flutter. Podemos pensar 
+neles como peças de lego, que se encaixam para formar aplicações. Cada Widget tem 
+características específicas, como tamanho e cor, e se relacionam entre si, formando 
+uma hierarquia de parentes e filhos.
+
+Além disso, revisamos a importância dos parâmetros e métodos dos Widgets, que são 
+semelhantes às classes que aprendemos em Dart. Por exemplo, o Widget Container possui 
+parâmetros como cor e tamanho, que definem suas características.
+
+A aula enfatiza que, assim como no lego, a conexão entre os Widgets é fundamental para 
+a construção de uma aplicação. Agora, estamos prontos para começar a programar e aplicar 
+esses conceitos na prática.
+================================================================================================
+Nesta aula, aprendemos a utilizar os Widgets Container e Stack no Flutter. Começamos limpando 
+o template padrão do código e mantendo apenas o essencial para o funcionamento do aplicativo.
+
+Em seguida, exploramos o Container, que permite definir propriedades como color, width, height 
+e child. Vimos que o child serve para criar uma relação entre um Container e outro Widget que 
+queremos adicionar dentro dele.
+
+Depois, introduzimos o Stack, que permite empilhar Widgets um sobre o outro. Aprendemos que o 
+Stack possui a propriedade children, onde podemos adicionar múltiplos Widgets, e a propriedade 
+alignment, que nos permite alinhar esses Widgets na tela.
+
+Por fim, praticamos a criação de Containers com diferentes cores e tamanhos, e como alinhá-los 
+usando o Stack. A aula enfatizou a importância de entender a relação entre Widgets e como 
+manipulá-los para criar layouts no Flutter.
+================================================================================================
+Nesta aula, aprendemos a utilizar Widgets mais avançados no Flutter, como o Container, Column, 
+Row, Text e ElevatedButton.
+
+Começamos alterando o fundo do aplicativo de preto para branco, envolvendo a Column em um Container 
+e definindo a cor como Colors.white. Em seguida, adicionamos um Container amarelo com um texto dentro, 
+utilizando o Widget Text para exibir "Diamante Amarelo". Aprendemos a estilizar o texto, mudando sua 
+cor para preto, ajustando o tamanho da fonte e centralizando-o.
+
+Depois, introduzimos o ElevatedButton, que permite interações. Criamos um botão que, ao ser pressionado, 
+exibe uma mensagem no console. Também exploramos a documentação do Flutter para entender melhor os 
+Widgets que utilizamos.
+
+Por fim, discutimos o conceito de overflow, que ocorre quando um Widget é maior do que a tela, e 
+observamos como isso se aplica aos nossos Containers. Essa aula nos proporcionou uma base sólida para 
+trabalhar com Widgets e interações no Flutter.
