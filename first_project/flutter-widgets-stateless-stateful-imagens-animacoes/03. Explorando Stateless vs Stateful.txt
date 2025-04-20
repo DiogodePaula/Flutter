@@ -1,0 +1,151 @@
+Nesta aula, aprendemos sobre a criação de uma tela utilizando o Flutter, focando na estrutura 
+básica de um aplicativo com o Widget Scaffold. O Scaffold nos permite organizar a tela em três 
+partes principais: o topo (app bar), o meio (body) e a parte de baixo (floating action button).
+
+Começamos a aula revisando um layout de aplicativo que precisamos criar, que é um organizador de 
+tarefas. Em seguida, realizamos algumas operações no código, como mover elementos para um novo 
+arquivo Dart e comentá-los para reutilização futura.
+
+Depois, introduzimos o Scaffold, adicionando um AppBar com um título e um Container no corpo da 
+tela. Por fim, incluímos um FloatingActionButton na parte inferior, que é um botão flutuante de 
+ação.
+
+A aula enfatizou a importância de entender a estrutura do Scaffold e como ele organiza os 
+elementos na tela, preparando-nos para construir a interface do nosso aplicativo de forma mais 
+elaborada.
+================================================================================================
+Nesta aula, aprendemos a implementar o layout de um aplicativo Flutter, começando pela criação do 
+body da tela. Alteramos o título da AppBar() para "Tarefas" e substituímos a cor de fundo preta 
+por um Container(). Em seguida, utilizamos um Stack() para sobrepor dois Containers: um azul e um 
+branco, definindo suas alturas.
+
+Depois, criamos uma Row() dentro do Container branco, onde adicionamos um Container cinza, um 
+Text() com o conteúdo "Aprender Flutter" e um ElevatedButton() com um ícone. Para melhorar o 
+espaçamento entre os elementos da Row(), utilizamos a propriedade mainAxisAlignment.
+
+Por fim, discutimos a necessidade de repetir o layout dos cartões de tarefa, sugerindo a criação 
+de um Widget específico para facilitar essa repetição. A aula focou na construção de uma interface 
+visual utilizando os conceitos de Widgets, Stack, Row e alinhamento de elementos.
+================================================================================================
+Nesta aula, aprendemos sobre a criação e utilização de Stateless Widgets no Flutter. Começamos 
+replicando um layout em uma coluna, mas percebemos que a repetição de código tornava o projeto 
+confuso e difícil de manter. Para resolver isso, criamos um Stateless Widget chamado Task, que 
+encapsula a estrutura de um cartão de tarefa.
+
+O Task recebe um parâmetro nome, permitindo que cada instância do widget exiba um texto diferente. 
+Aprendemos a inicializar esse parâmetro e a utilizá-lo dentro do widget, substituindo o texto fixo 
+por Text(nome).
+
+Além disso, discutimos a importância de usar palavras em inglês para padronização no código. Por fim, 
+abordamos a questão do overflow quando adicionamos muitas tarefas e a necessidade de permitir que o 
+usuário role a tela para visualizar todas as tarefas. A aula enfatizou a reutilização de widgets e a 
+organização do código para facilitar a manutenção e a legibilidade.
+================================================================================================
+Nesta aula, aprendemos sobre a diferença entre Widgets Stateless e Stateful, e como implementar o 
+Widget ListView para permitir a rolagem de elementos na tela. Substituímos uma Column por um ListView, 
+que nos permite visualizar uma lista de tarefas sem limites de espaço.
+
+Além disso, exploramos o uso de padding para criar espaçamentos entre os cartões de tarefas, melhorando 
+a estética do aplicativo. Aprendemos a modificar o estilo do texto, aumentando o tamanho da fonte e 
+limitando a largura do texto dentro de um Container, evitando problemas de overflow. Por fim, utilizamos 
+o parâmetro overflow com a opção ellipsis para garantir que textos muito longos sejam truncados com "..." 
+ao invés de ultrapassarem o limite do Container.
+
+Esses conceitos ajudam a criar uma interface mais organizada e agradável para o usuário.
+
+todos os Widgets Scrolláveis
+https://docs.flutter.dev/ui/widgets/scrolling
+================================================================================================
+Nesta aula, aprendemos sobre a diferença entre Stateless e Stateful Widgets no Flutter, focando na 
+implementação do Stateful Widget. O objetivo era fazer com que o nível de uma tarefa, exibido na 
+interface do aplicativo, pudesse ser alterado ao clicar em um botão.
+
+Primeiro, adicionamos um texto que exibe o nível da tarefa e o estilizamos para melhor legibilidade. 
+Em seguida, criamos uma variável nivel dentro do StatefulWidget para armazenar o nível atual da 
+tarefa. Aprendemos que, ao usar um Stateless Widget, as alterações na variável não refletiam na 
+interface, pois ele não atualiza a tela automaticamente.
+
+Convertendo o Widget para Stateful, implementamos a função setState() dentro do onPressed do botão, 
+que informa ao Flutter que o estado mudou e que a interface deve ser reconstruída. Também discutimos 
+a importância de declarar a variável nivel fora da função build(), para que seu valor não fosse 
+redefinido a cada reconstrução do Widget.
+
+Ao final, conseguimos que cada cartão de tarefa exibisse seu nível corretamente, atualizando tanto 
+no console quanto na tela, sempre que o botão era pressionado.
+================================================================================================
+Nesta aula, aprendemos a adicionar e configurar o Widget LinearProgressIndicator em nosso projeto 
+Flutter. O objetivo é mostrar uma barra de progresso que indica o nível de uma tarefa.
+
+Primeiro, inserimos o LinearProgressIndicator() ao lado do texto que exibe o nível da tarefa, 
+utilizando um Row para organizá-los horizontalmente. Em seguida, envolvemos o indicador em um Container 
+para limitar seu tamanho e ajustamos sua cor e valor. O valor do indicador é dinâmico, sendo calculado 
+como nivel/10, permitindo que a barra preencha conforme o nível da tarefa aumenta.
+
+Além disso, ajustamos o alinhamento dos elementos dentro do Row usando mainAxisAlignment: 
+MainAxisAlignment.spaceBetween e aplicamos Padding para afastar os elementos das bordas do Container, 
+melhorando a estética do layout.
+
+Por fim, discutimos a diferença entre Hot Reload e Hot Restart, que será abordada em um vídeo posterior. 
+Essa aula nos ensinou a trabalhar com barras de progresso e a melhorar a apresentação visual dos nossos 
+Widgets.
+================================================================================================
+Nesta aula, aprendemos sobre as diferenças entre Hot Reload e Hot Restart no Flutter. O Hot Reload é uma 
+forma rápida de recarregar a aplicação, permitindo que as alterações no código sejam visualizadas quase 
+instantaneamente, sem perder o estado atual do aplicativo. Por outro lado, o Hot Restart reinicia toda a 
+aplicação e é necessário quando fazemos mudanças mais profundas, como a adição de novos Widgets ou alterações 
+significativas na estrutura do código.
+
+Além disso, discutimos a importância do método build(), que facilita a atualização da interface do usuário. 
+Também exploramos como melhorar o layout do aplicativo, utilizando Widgets como Padding e Container, e 
+ajustamos elementos na App Bar e no botão de aumento de nível, tornando o design mais agradável e funcional.
+
+Por fim, realizamos ajustes nos parâmetros de estilo e alinhamento dos Widgets para aprimorar a 
+apresentação do aplicativo. A aula enfatizou a importância de entender como cada ferramenta e Widget 
+funciona para criar uma interface de usuário eficiente e bonita.
+
+Existe um outro tipo de Widget, que você pode usar como base para criar seu Widget customizado, o nome 
+dele é InheritedWidget e ele tem algumas peculiaridades que são boas para quando você quer herdar 
+informações de um Widget Mãe (Pai) para um Widget Filha(o).
+
+Você pode descobrir mais nesse artigo magnífico do Lucas Eduardo:
+https://medium.com/@lucased78/o-incompreendido-inheritedwidget-4a52c5a1d45f
+================================================================================================
+Nessa aula entendemos melhor como usar o Material Design no nosso projeto, além de criar nosso 
+próprio Widget customizado! Agora já temos mais domínio de como manipular as estruturas do nosso 
+aplicativo para criar uma tela pré-definida. Vamos dar uma recapitulada?
+
+Scaffold:
+
+O Widget que segue as regras do material Design para criar uma tela com appBar, body, floatingActionButton, 
+além de outros parâmetros que podemos verificar no catálogo de Widgets da documentação.
+Stateless Widget:
+
+Estrutura pré-preparada para criarmos nosso Widget customizado. Widget de tela estática, ou seja, 
+que não muda com o tempo ou ações.
+ListView:
+
+O Widget que permite mostrar uma lista de elementos na tela, com a possibilidade de arrastar a tela. 
+Com esse Widget começamos a descobrir como explorar telas maiores do que o limite de espaço do nosso 
+dispositivo. Armado com o parâmetro children, possui também outros parâmetros que podemos verificar 
+no catálogo de Widgets da documentação.
+Padding:
+
+O Widget que nos permite criar uma camada externa de espaço em cada um dos 4 lados de seu Widget 
+filho (child) usando o EdgeInsets no parâmetro padding.
+Stateful Widget:
+
+Estrutura pré-preparada para criarmos nosso Widget customizado, um Widget de tela dinâmica, ou seja, 
+que pode mudar com o tempo ou ações.
+LinearProgressIndicator:
+
+O primeiro Widget do catálogo que usamos já é um Stateful por natureza! Ele possui a capacidade de 
+mudar de tamanho de acordo com seu valor (value) em double. Temos também a opção de alterar sua cor 
+de fundo (backgroundColor) e cor principal (color), além de outros parâmetros que podemos verificar 
+no catálogo de Widgets da documentação.
+Hot Reload e Hot Restart:
+
+Com a descoberta do Stateful podemos agora entender a grande diferença entre o Hot Restart e o Hot 
+Reload. Vimos como o Hot Restart reinicia nossa aplicação recarregando os valores e redesenhando a 
+tela, sem guardar nenhuma informação (demora um pouco mais), enquanto o Hot Reload recarrega alguns 
+elementos simples na tela e mantém os valores salvos (extremamente rápido).
+Concluímos a Aula 3!

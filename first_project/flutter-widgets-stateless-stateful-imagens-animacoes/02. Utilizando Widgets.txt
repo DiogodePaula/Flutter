@@ -41,3 +41,33 @@ Widgets que utilizamos.
 Por fim, discutimos o conceito de overflow, que ocorre quando um Widget é maior do que a tela, e 
 observamos como isso se aplica aos nossos Containers. Essa aula nos proporcionou uma base sólida para 
 trabalhar com Widgets e interações no Flutter.
+================================================================================================
+Nesta aula, aprendemos sobre o conceito de overflow em Flutter, que ocorre quando um Widget ultrapassa os 
+limites da tela. O instrutor demonstrou como isso pode acontecer ao aumentar o tamanho de um Container, 
+tanto na vertical quanto na horizontal, e como isso pode dificultar a visualização de outros Widgets.
+
+Foi explicado que, em uma Column, o tamanho vertical dos Widgets pode ser infinito, enquanto em uma Row, 
+o tamanho horizontal também tende ao infinito. Portanto, é importante ter cuidado ao definir tamanhos para 
+evitar o overflow.
+
+Além disso, foi apresentada a ferramenta Flutter Inspector no Android Studio, que permite visualizar a árvore 
+de Widgets e entender melhor como os Widgets estão organizados e quais podem causar overflow. O Flutter Inspector 
+fornece informações sobre o layout e os parâmetros dos Widgets, ajudando a identificar potenciais problemas.
+
+Em resumo, a aula enfatizou a importância de entender o overflow e como usar o Flutter Inspector para facilitar 
+o desenvolvimento e a visualização da estrutura do aplicativo.
+
+Entendendo Restrições em Flutter
+https://medium.com/flutter-community/flutter-the-advanced-layout-rule-even-beginners-must-know-edc9516d1a2
+================================================================================================
+Nesta aula, aprendemos sobre a utilização de Widgets no Flutter, focando nas diferenças entre os designs Material 
+e Cupertino. O Material Design, criado pela Google, oferece uma variedade de Widgets com cores e formatos prontos, 
+facilitando a criação de aplicativos bonitos sem a necessidade de um profundo conhecimento em design. Já o Cupertino 
+é o design da Apple, que possui características específicas para dispositivos iOS, com cores e formatos padronizados.
+
+Além disso, discutimos a importância de escolher cores específicas na programação, utilizando o modelo RGB (Vermelho, 
+Verde e Azul) e o valor de Alpha para definir a transparência das cores. O Flutter permite a criação de uma infinidade 
+de cores através do método Color.fromARGB(), o que nos dá mais liberdade na personalização dos nossos aplicativos.
+
+Por fim, a aula enfatizou que, embora existam padrões de design, não somos obrigados a segui-los rigidamente, e podemos 
+adaptar os Widgets conforme necessário para atender às expectativas dos usuários de diferentes plataformas.
