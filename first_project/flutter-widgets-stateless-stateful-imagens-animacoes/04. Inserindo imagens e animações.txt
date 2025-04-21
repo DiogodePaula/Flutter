@@ -1,0 +1,90 @@
+Nesta aula, aprendemos a inserir imagens em nosso projeto Flutter utilizando o Widget Image. 
+Começamos revisando a documentação do Flutter e explorando o catálogo de Widgets, onde encontramos 
+o Widget Image, que aceita quatro tipos básicos de imagens: Asset, Network, File e Memory.
+
+Focamos em usar o Image.network() para carregar imagens da internet. Aprendemos que o parâmetro 
+obrigatório é o src, que deve ser uma URL válida. Também discutimos o parâmetro fit, que ajusta 
+a imagem dentro do seu Container, e decidimos usar BoxFit.cover para garantir que a imagem preencha 
+o espaço adequadamente.
+
+Além disso, implementamos a funcionalidade para que cada tarefa em nossa lista tivesse sua própria 
+imagem, criando um parâmetro foto na classe Task e passando a URL da imagem correspondente para 
+cada tarefa. Por fim, testamos diferentes imagens e garantimos que cada tarefa exibisse a imagem 
+correta.
+
+Se você tiver alguma dúvida ou precisar de mais detalhes sobre algum ponto específico, estou aqui 
+para ajudar!
+================================================================================================
+Nesta aula, aprendemos a adicionar estrelas que indicam a dificuldade das tarefas em nosso aplicativo 
+Flutter. Começamos revisando o layout no Figma e percebemos que precisávamos incluir as estrelas 
+abaixo do nome das tarefas.
+
+Para isso, utilizamos um Column para organizar o texto e as estrelas. Adicionamos um Row para que 
+as cinco estrelas ficassem lado a lado. Ajustamos o tamanho e a cor das estrelas, utilizando size 
+e color no widget Icon(). Algumas estrelas foram definidas com cores mais transparentes usando 
+Colors.blue[100].
+
+Além disso, ajustamos o alinhamento das estrelas e do texto dentro da coluna, utilizando 
+mainAxisAlignment e crossAxisAlignment para centralizar e alinhar os elementos corretamente. Ao 
+final, conseguimos deixar o layout conforme o esperado, pronto para a próxima etapa de definir a 
+lógica de dificuldade para cada tarefa.
+================================================================================================
+Nesta aula, aprendemos a implementar a lógica de dificuldade nas tarefas do nosso aplicativo Flutter. 
+Cada tarefa agora possui um nível de dificuldade, que varia de 1 a 5, e é representado por estrelas 
+coloridas. Para isso, adicionamos um novo atributo dificuldade na classe Task e utilizamos operadores 
+ternários para definir a cor das estrelas com base nesse nível de dificuldade.
+
+Além disso, ajustamos a barra de progresso para que ela reflita a dificuldade da tarefa, dividindo 
+o nível atual pela dificuldade e, em seguida, por 10. Também implementamos uma verificação para 
+evitar divisões por zero, garantindo que a dificuldade nunca seja menor ou igual a zero.
+
+Com essas alterações, conseguimos que cada tarefa mostre sua dificuldade de forma visual e que a 
+barra de progresso seja ajustada de acordo com a dificuldade específica de cada atividade.
+================================================================================================
+Nesta aula, aprendemos a usar o widget BoxDecoration para arredondar as bordas de nossos Containers 
+em um aplicativo Flutter. O instrutor mostrou como aplicar o parâmetro decoration em vez de color 
+para que as bordas ficassem arredondadas.
+
+Primeiro, foi necessário recortar a propriedade color e inseri-la dentro do BoxDecoration, junto 
+com o borderRadius, que utilizamos com BorderRadius.circular(4). O instrutor também abordou a 
+importância de ler as mensagens de erro que aparecem na tela, como a tela vermelha que indica que 
+color ou decoration não podem ser usados juntos.
+
+Além disso, foi demonstrado como aplicar o ClipRRect para as imagens, permitindo que elas também 
+tivessem bordas arredondadas. Ao final, todas as bordas dos Containers e imagens estavam arredondadas, 
+melhorando a estética do aplicativo. A aula enfatizou a importância de entender os parâmetros e 
+como resolver erros comuns que podem surgir durante o desenvolvimento.
+================================================================================================
+Nesta aula, aprendemos a implementar uma nova funcionalidade em nosso aplicativo Flutter, que 
+permite esconder as tarefas exibidas na tela ao clicar em um botão. Para isso, utilizamos o widget 
+AnimatedOpacity, que nos permite animar a opacidade de um widget, fazendo com que ele apareça ou 
+desapareça gradualmente.
+
+Os principais passos foram:
+
+Identificação do botão: Usamos o Floating Action Button que já estava presente no aplicativo.
+
+Uso do AnimatedOpacity: Envolvemos o ListView com o AnimatedOpacity, configurando os parâmetros 
+opacity e duration.
+
+Controle da opacidade: Inicialmente, a opacidade foi definida como 1 (totalmente visível). Alteramos 
+para 0 para esconder as tarefas e ajustamos a duração da animação.
+
+Variável de controle: Criamos uma variável booleana para controlar a opacidade, permitindo alternar 
+entre 1 e 0 ao clicar no botão.
+
+Conversão para StatefulWidget: Mudamos o MyApp de StatelessWidget para StatefulWidget para que a 
+interface pudesse ser atualizada dinamicamente.
+
+Implementação do setState: Usamos o setState() para atualizar a opacidade ao clicar no botão, 
+permitindo que as tarefas aparecessem ou desaparecessem.
+
+Ao final, conseguimos fazer com que as tarefas fossem ocultadas e reveladas com uma animação suave, 
+tornando o aplicativo mais interativo e funcional.
+================================================================================================
+Por isso, caso você tenha vontade de entender melhor sobre como criar suas próprias animações no 
+Flutter, não deixe de conferir nossa formação Flutter ainda mais atraente com animações, lá você 
+conseguirá mergulhar ainda mais fundo nesse tema fascinante!
+
+Sinto-me no dever de avisar: “Apesar de animações darem vida e movimento aos nossos apps, elas 
+são extremamente pesadas quando usadas em excesso, por isso, tente não exagerar.”

@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 
 void main() {
   // tudo que esta dentro de main app roda na aplicação
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool opacityList = true;
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +28,37 @@ class MyApp extends StatelessWidget {
           title: Text('Tarefas'),
           backgroundColor: Colors.amber,
         ),
-        body: ListView(
-          children: [
-            Task('Aprender Flutter'),
-            Task('Aprender Nadar'),
-            Task('Aprender Tocar Violão ao anoitecer'),
-          ],
+        body: AnimatedOpacity(
+          opacity: opacityList ? 1 : 0,
+          duration: Duration(seconds: 1),
+          child: ListView(
+            children: [
+              Task(
+                'Aprender Flutter',
+                'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                3,
+              ),
+              Task(
+                'Ler',
+                'https://thebogotapost.com/wp-content/uploads/2017/06/636052464065850579-137719760_flyer-image-1.jpg',
+                2,
+              ),
+              Task(
+                'Jogar',
+                'https://i.ibb.co/tB29PZB/kako-epifania-2022-2-c-pia.jpg',
+                1,
+              ),
+            ],
+          ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            setState(() {
+              opacityList = !opacityList;
+            });
+          },
           backgroundColor: Colors.amber,
-          child: Icon(Icons.add),
+          child: Icon(Icons.remove_red_eye),
         ),
       ),
     );
@@ -41,7 +68,10 @@ class MyApp extends StatelessWidget {
 //StatelessWidget, estático, não muda
 class Task extends StatefulWidget {
   final String title;
-  const Task(this.title, {super.key});
+  final String imageSrc;
+  final int difficulty;
+
+  const Task(this.title, this.imageSrc, this.difficulty, {super.key});
 
   @override
   State<Task> createState() => _TaskState();
@@ -56,23 +86,96 @@ class _TaskState extends State<Task> {
       padding: EdgeInsetsDirectional.all(8.0),
       child: Stack(
         children: [
-          Container(color: Colors.amber, height: 140),
+          Container(
+            height: 140,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4),
+              color: Colors.amber,
+            ),
+          ),
           Column(
             children: [
               Container(
-                color: Colors.blue,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  color: Colors.black38,
+                ),
                 height: 100,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(color: Colors.black26, width: 72, height: 100),
                     Container(
-                      width: 200,
-                      child: Text(
-                        widget.title,
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                        overflow: TextOverflow.ellipsis,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        color: Colors.black26,
                       ),
+                      width: 72,
+                      height: 100,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(4),
+                        child: Image.network(
+                          widget.imageSrc,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 200,
+                          child: Text(
+                            widget.title,
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.star,
+                              color:
+                                  (widget.difficulty >= 1)
+                                      ? Colors.white
+                                      : Colors.white38,
+                              size: 15,
+                            ),
+                            Icon(
+                              Icons.star,
+                              color:
+                                  (widget.difficulty >= 2)
+                                      ? Colors.white
+                                      : Colors.white38,
+                              size: 15,
+                            ),
+                            Icon(
+                              Icons.star,
+                              color:
+                                  (widget.difficulty >= 3)
+                                      ? Colors.white
+                                      : Colors.white38,
+                              size: 15,
+                            ),
+                            Icon(
+                              Icons.star,
+                              color:
+                                  (widget.difficulty >= 4)
+                                      ? Colors.white
+                                      : Colors.white38,
+                              size: 15,
+                            ),
+                            Icon(
+                              Icons.star,
+                              color:
+                                  (widget.difficulty >= 5)
+                                      ? Colors.white
+                                      : Colors.white38,
+                              size: 15,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                     Container(
                       width: 55,
@@ -113,7 +216,10 @@ class _TaskState extends State<Task> {
                     child: Container(
                       width: 200,
                       child: LinearProgressIndicator(
-                        value: nivel / 10,
+                        value:
+                            (widget.difficulty > 0)
+                                ? (nivel / widget.difficulty) / 10
+                                : 1,
                         color: Colors.white,
                         backgroundColor: Colors.black38,
                       ),
