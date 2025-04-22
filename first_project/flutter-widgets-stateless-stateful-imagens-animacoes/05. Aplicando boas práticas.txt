@@ -1,0 +1,84 @@
+Nesta aula, aprendemos sobre a importância da refatoração e boas práticas na organização do código 
+em Flutter. Embora nosso aplicativo funcione corretamente, o código estava desorganizado, concentrado 
+em um único arquivo, o "main.dart", o que dificultava a compreensão e manutenção.
+
+Discutimos a ideia de "responsabilidade", que sugere que cada arquivo deve conter uma única 
+responsabilidade. Identificamos várias responsabilidades no "main.dart", como a função MyApp(), 
+que lida com o MaterialApp() e o Scaffold(), e o Task(), que é um StatefulWidget.
+
+A aula também abordou a necessidade de evitar comentários desnecessários e a prática de criar 
+novos arquivos para componentes que podem ser reutilizados, como a tela inicial, que foi transformada 
+em um StatelessWidget chamado MyFirstWidget. Aprendemos a importar bibliotecas necessárias e a 
+conectar diferentes arquivos do projeto, facilitando a leitura e a manutenção do código.
+
+Por fim, enfatizamos que um código bem estruturado é essencial para que outras pessoas possam 
+compreendê-lo facilmente, além de facilitar nosso próprio entendimento no futuro.
+================================================================================================
+No último vídeo comentamos sobre a existência dos Temas, mas não nos aprofundamos muito sobre o 
+que ele é e como ele pode ser manipulado. Por isso, caso você tenha curiosidade sobre o assunto, 
+separei um artigo sobre Temas e Cores, do Kako:
+
+https://www.alura.com.br/artigos/flutter-temas-cores
+================================================================================================
+Nesta aula, aprendemos a refatorar o código do nosso aplicativo Flutter, separando responsabilidades 
+em diferentes arquivos para melhorar a organização e a legibilidade do código.
+
+1) Refatoração da Classe Task: Movemos a classe Task e seu estado _TaskState para um novo arquivo chamado 
+task.dart. Para isso, importamos o material.dart e a classe Difficulty que era necessária.
+
+2) Atualização do main.dart: Após remover a classe Task do main.dart, importamos o novo arquivo task.dart 
+e removemos importações desnecessárias.
+
+3) Criação da Tela Inicial: Criamos um novo StatelessWidget chamado InitialScreen, que depois foi 
+convertido para StatefulWidget devido à necessidade de gerenciar um estado de opacidade.
+
+4) Organização do Código: A classe InitialScreen e seu estado foram movidos para um novo arquivo chamado 
+initial_screen.dart, e as importações necessárias foram feitas.
+
+5) Finalização do main.dart: Por fim, atualizamos o main.dart para usar a nova tela inicial e removemos 
+importações que não eram mais necessárias.
+
+6) Com essas mudanças, o código ficou mais modular e fácil de manter, separando as responsabilidades 
+de forma clara.
+================================================================================================
+Nesta aula, aprendemos sobre boas práticas na organização e refatoração do código em Flutter. O 
+instrutor mostrou como transformar um StatefulWidget em um StatelessWidget, removendo a necessidade 
+de estado quando a funcionalidade não é mais necessária.
+
+Além disso, foi abordada a importância de organizar os arquivos em pastas, separando componentes 
+reutilizáveis em uma pasta chamada "components" e as telas em uma pasta "screens".
+
+O instrutor também destacou a análise de warnings e typos no código, ensinando como resolver 
+problemas comuns, como a adição do const em widgets que não mudam e a substituição de Container 
+por SizedBox quando apropriado.
+
+Por fim, foi enfatizada a importância de evitar o uso de print() no código e a necessidade de 
+manter o código limpo e organizado para facilitar a manutenção e a performance do aplicativo.
+================================================================================================
+Nesta aula, aprendemos a aplicar boas práticas no nosso projeto Flutter, focando em duas melhorias 
+principais. Primeiro, ajustamos o layout para melhorar a experiência do usuário, adicionando um 
+espaço em branco entre o botão e a última tarefa usando o SizedBox, ao invés de um Container, 
+para otimizar o desempenho.
+
+Em seguida, abordamos a questão das imagens, que atualmente estão sendo carregadas da Internet. 
+Para evitar problemas de conexão e lentidão, decidimos adicionar as imagens diretamente ao projeto. 
+Para isso, criamos uma pasta "assets" e uma subpasta "images" dentro do nosso projeto, onde colamos 
+as imagens baixadas.
+
+Aprendemos também a modificar o arquivo "pubspec.yaml" para informar ao Flutter sobre as novas 
+imagens, utilizando a sintaxe correta para que o projeto reconheça os arquivos. Por fim, 
+substituímos as chamadas de Image.network() por Image.asset() nas tarefas, garantindo que as 
+imagens carreguem rapidamente e sem depender da Internet.
+
+No entanto, discutimos que, embora essa abordagem torne o projeto mais autossuficiente, ele pode 
+ficar mais pesado, o que deve ser considerado dependendo da quantidade de imagens que estamos 
+utilizando.
+================================================================================================
+O desafio é o seguinte:
+
+Quando sua tarefa chegar no nível máximo de maestria (ou seja, a barra de progresso estiver toda 
+preenchida), a tarefa deve MUDAR DE COR.
+
+Faça vários níveis diferentes de maestria, indicados por diferentes cores!
+
+Lembre-se de que com dificuldades diferentes, as maestrias demoram mais!
