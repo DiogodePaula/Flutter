@@ -1,0 +1,59 @@
+Nesta aula, aprendemos a construir formulários em Flutter utilizando o TextEditingController para 
+manipular o texto inserido nos campos.
+
+Criação do Controller: Começamos criando um TextEditingController chamado nameController para controlar 
+o texto de um TextFormField. Esse controller é vinculado ao campo de texto, permitindo que o que for 
+digitado seja armazenado.
+
+Imprimindo o Texto: Criamos um botão que, ao ser pressionado, imprime o texto contido no nameController. 
+Inicialmente, imprimimos o próprio controller, mas depois ajustamos para imprimir apenas o texto usando 
+nameController.text.
+
+Adicionando Mais Campos: Expandimos o formulário adicionando mais dois campos de texto: um para 
+"Dificuldade" e outro para "Imagem". Para cada um, criamos um novo TextEditingController (difficultyController 
+e imageController).
+
+Manipulação de Dados: Aprendemos que o texto do difficultyController é uma string e, para manipulá-lo 
+como um número, utilizamos a função int.parse() para convertê-lo em um inteiro.
+
+Exibição de Dados: Finalmente, ao clicar no botão, imprimimos os valores dos três campos no console, 
+permitindo verificar o que foi inserido pelo usuário.
+
+Essa aula nos ensinou a criar formulários interativos e a manipular os dados inseridos de forma eficiente. 
+Se precisar de mais detalhes ou exemplos, estou aqui para ajudar!
+==========================================================================================================
+Nesta aula, aprendemos a construir um formulário que permite visualizar uma imagem em tempo real a partir 
+de uma URL inserida pelo usuário.
+
+Os principais passos incluem:
+
+Criar um contêiner: Usamos um Container para exibir a imagem, definindo suas dimensões e estilo com BoxDecoration, 
+incluindo cor, bordas arredondadas e uma borda.
+
+Adicionar a imagem: Dentro do contêiner, utilizamos ClipRRect para aplicar bordas arredondadas à imagem e Image.
+network para carregar a imagem a partir da URL fornecida no campo de texto.
+
+Automatizar a exibição: Para que a imagem apareça automaticamente ao inserir a URL, implementamos o parâmetro 
+onChanged no TextFormField. Isso chama setState() sempre que o texto muda, permitindo que o StatefulWidget 
+reconstrua a tela e exiba a nova imagem.
+
+Tratar URLs inválidas: Discutimos a importância de lidar com URLs inválidas, evitando a exibição de um retângulo 
+azul com um "X".
+
+Esses passos nos ajudam a criar uma interface interativa e responsiva para visualização de imagens.
+==========================================================================================================
+Nesta aula, aprendemos a lidar com erros e exceções ao carregar imagens no Flutter, utilizando o parâmetro 
+errorBuilder do widget Image.network. Quando uma URL de imagem é inválida, em vez de exibir um erro visual 
+(como um "X"), podemos construir uma saída personalizada.
+
+Primeiro, verificamos como o Flutter exibe mensagens de erro no console do Android Studio e como isso se 
+relaciona com a pilha de exceções. Em seguida, implementamos o errorBuilder para retornar um Container vazio 
+quando a imagem não puder ser carregada.
+
+Depois, melhoramos a experiência do usuário ao exibir uma imagem padrão ("nophoto") quando não há uma imagem
+ válida. Para isso, adicionamos a imagem ao projeto e atualizamos o arquivo pubspec.yaml. Por fim, ajustamos 
+ o layout do formulário, centralizando e espaçando os campos corretamente.
+
+Esses passos nos ajudam a criar uma interface mais amigável e a tratar erros de forma eficaz em nossos 
+aplicativos Flutter. Se precisar de mais detalhes ou exemplos, estou aqui para ajudar!
+==========================================================================================================
