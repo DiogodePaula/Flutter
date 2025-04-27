@@ -1,0 +1,25 @@
+Nesta aula, aprendemos sobre a aplicação de validação e a utilização do teclado em formulários no Flutter. 
+Discutimos a importância de tornar a tela rolável usando o widget SingleChildScrollView, o que ajuda a 
+evitar problemas de overflow quando o teclado aparece.
+
+Além disso, abordamos como ajustar o tipo de teclado que aparece para o usuário ao clicar em diferentes 
+campos de texto. Para o campo de Dificuldade, utilizamos o TextInputType.number para abrir um teclado 
+numérico, enquanto para o campo de Imagem, usamos TextInputType.url para facilitar a digitação de URLs. 
+Esses ajustes melhoram a experiência do usuário e garantem que os dados sejam inseridos corretamente.
+
+Por fim, enfatizamos a importância de considerar esses detalhes para melhorar a usabilidade da aplicação.
+==========================================================================================================
+Nesta aula, aprendemos a implementar um feedback visual para o usuário ao enviar um formulário em Flutter, 
+utilizando o widget SnackBar. O objetivo é informar ao usuário que a tarefa foi adicionada com sucesso.
+
+No código, dentro do método onPressed do ElevatedButton, verificamos se o formulário é válido. Se for, além 
+de imprimir as informações no console, usamos ScaffoldMessenger.of(context).showSnackBar() para mostrar um 
+SnackBar com a mensagem "Printando nova Tarefa". Isso proporciona um retorno visual ao usuário, evitando que 
+ele clique várias vezes no botão sem saber se a ação foi realizada.
+
+Por fim, destacamos a importância de fornecer feedbacks ao usuário para melhorar a experiência e evitar 
+confusões.
+
+Como customizar um Snackbar do Joabe Ramone:
+https://dev.to/joaberamone/como-usar-snackbars-em-flutter-4ce
+==========================================================================================================

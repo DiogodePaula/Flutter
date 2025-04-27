@@ -1,0 +1,37 @@
+Claro! Nesta aula, aprendemos sobre os tipos de navegação e rotas no Flutter, focando principalmente na 
+navegação direta, que é a mais simples e se divide em rotas anônimas e rotas nomeadas.
+
+Navegação Direta: É um modelo de navegação linear, onde as telas são empilhadas uma sobre a outra, formando 
+um caminho único. Para voltar à tela inicial, é necessário passar por todas as telas anteriores, como se 
+estivéssemos atravessando corredores.
+
+Rotas Anônimas: São a forma mais simples de navegar entre telas. Utilizamos o Navigator.push() para empurrar 
+uma nova tela na pilha e Navigator.pop() para voltar.
+
+Rotas Nomeadas: Um pouco mais complexas, onde nomeamos as telas no MaterialApp. Isso facilita a organização 
+em projetos com muitas telas, utilizando Navigator.pushNamed() para navegar.
+
+Navegação 2.0: Uma forma mais avançada de navegação, ideal para Flutter Web, que permite uma navegação mais 
+livre, sem a necessidade de passar por todas as telas. Essa navegação é mais complexa e requer o entendimento 
+de novos conceitos como Page, Router, entre outros.
+
+A aula enfatiza a importância de entender esses conceitos, mesmo que não exploremos todos eles em profundidade 
+neste curso introdutório. Se tiver mais dúvidas ou quiser praticar, estou aqui para ajudar!
+==========================================================================================================
+Nesta aula, aprendemos a realizar navegações entre telas em um aplicativo Flutter. Começamos configurando a 
+tela inicial do aplicativo, substituindo a tela de formulário pela tela inicial no arquivo main.dart.
+
+Em seguida, modificamos o botão flutuante (FloatingActionButton) para que, ao ser pressionado, ele navegue 
+para a tela de formulário usando o Navigator.push(), que adiciona uma nova tela à pilha de navegação. Para 
+isso, utilizamos o MaterialPageRoute() para definir a nova rota.
+
+Testamos a navegação e verificamos que, ao voltar da tela de formulário, o aplicativo já possui um botão de 
+voltar que utiliza o Navigator.pop(). Também discutimos a importância de usar o pop() para evitar acumular 
+telas na pilha de navegação.
+
+Por fim, mencionamos que, embora a navegação entre as telas esteja funcionando, ainda precisamos trabalhar na 
+passagem de informações da tela de formulário para a tela inicial, o que envolve entender estados e comunicação 
+entre widgets.
+==========================================================================================================
+conteúdo sobre Rotas Nomeadas:
+https://cursos.alura.com.br/extra/alura-mais/flutter-como-usar-navegacao-nomeada-c1186
