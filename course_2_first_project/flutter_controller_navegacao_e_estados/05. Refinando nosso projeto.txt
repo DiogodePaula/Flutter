@@ -1,0 +1,44 @@
+Nesta aula, aprendemos a lidar com bugs de forma saudável e a importância de manter a calma ao enfrentá-los. 
+O instrutor apresentou um bug específico relacionado ao carregamento de imagens em uma lista de tarefas, onde 
+a imagem não aparecia devido ao uso incorreto do Image.asset para um caminho de URL.
+
+Para resolver o problema, foi sugerido criar um método booleano chamado assetOrNetwork, que verifica se a 
+imagem é um asset ou um URL. Com isso, utilizamos um operador ternário para decidir entre Image.asset e 
+Image.network, dependendo do tipo de caminho fornecido.
+
+Além disso, foi feita uma correção no layout do ListView para evitar que o botão flutuante ficasse sobreposto 
+à última tarefa. Ao final, o projeto foi recarregado e testado, garantindo que tudo funcionasse corretamente. 
+A aula enfatizou a importância de uma abordagem calma e metódica na resolução de problemas em programação.
+==========================================================================================================
+Na aula "Refinando nosso projeto", aprendemos a organizar e melhorar a estrutura do nosso projeto Flutter. 
+Começamos revisando a organização dos componentes, dados e telas, garantindo que tudo estivesse bem estruturado. 
+Em seguida, focamos na validação dos formulários, identificando e corrigindo más práticas, como o uso inadequado 
+do null safety.
+
+Criamos métodos para evitar a repetição de código nos validadores, como o valueValidator e o difficultyValidator, 
+que simplificam as verificações de valores nulos e vazios, além de validar a dificuldade entre 1 e 5.
+
+Realizamos testes para verificar o funcionamento do projeto, especialmente em relação ao estado das tarefas, 
+e aprendemos que, ao sair da tela, o estado pode ser perdido. Para resolver isso, movemos a variável de nível 
+para a classe Task, garantindo que ela não se perdesse ao navegar entre as telas.
+
+Por fim, discutimos que o projeto ainda não salva informações permanentemente, o que é uma limitação, e que 
+aprenderemos mais sobre gerenciamento de estados em aulas futuras.
+==========================================================================================================
+Desafio: Subindo de nível
+ Próxima Atividade
+
+A hora que todos esperavam! É hora do DESAFIO!
+
+As regras são simples, vou te passar a ideia do desafio, uma explicação do que você tem que tentar criar e daí você “dá seus pulo”! Combinado?
+
+O desafio é o seguinte:
+
+Crie um level (nível) global, que seja a soma do Nível de todas as suas tarefas existentes;
+Toda vez que você subir de Nível numa tarefa, seu level pessoal deve subir também;
+Quanto mais difícil for a tarefa, mais level você ganhará;
+Mostre seu level na barra superior do aplicativo (uma barra de progresso cai bem, viu?).
+Vou te dar uma dica apenas:
+
+Para atualizar o status do Level, use um botão! Como no GIF.
+==========================================================================================================

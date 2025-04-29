@@ -1,0 +1,137 @@
+Claro! Nesta aula, aprendemos sobre o conceito de estado em Flutter, que representa o momento atual de uma 
+variável. Discutimos dois tipos de estado: o Ephemeral State (Estado Efêmero), que é temporário e gerenciado 
+por um único widget, e o App State (Estado do Aplicativo), que lida com informações compartilhadas entre 
+múltiplos widgets.
+
+O Ephemeral State é simples e se aplica quando apenas um widget precisa de uma informação, enquanto o App 
+State é necessário quando várias partes do aplicativo precisam acessar ou modificar os mesmos dados.
+
+Vimos também a importância de monitorar as mudanças de estado, utilizando exemplos como o ElevatedButton e 
+o TextFormField, que têm controladores que observam suas interações. Por fim, discutimos como a escolha 
+entre usar um estado efêmero ou um estado de aplicativo depende de quantos widgets precisam da informação.
+
+Se precisar de mais detalhes ou exemplos, estou aqui para ajudar!
+==========================================================================================================
+Nesta aula, aprendemos sobre o Inherited Widget, uma ferramenta importante no Flutter que permite compartilhar 
+dados entre diferentes widgets de forma eficiente. O Inherited Widget é responsável por manter informações e 
+facilitar a manipulação de dados em widgets distintos.
+
+Começamos criando um novo diretório chamado data e um arquivo Dart chamado task_inherited.dart, onde 
+implementamos nosso Inherited Widget. Definimos a classe TaskInherited, que herda de InheritedWidget, e 
+criamos um construtor que recebe um argumento child.
+
+Em seguida, estabelecemos uma lista chamada taskList, que armazena objetos do tipo Task. Essa lista é 
+inicializada com algumas tarefas padrão, como "Aprender Flutter" e "Andar de Bike". Através do Inherited Widget, 
+conseguimos manipular essa lista de tarefas, permitindo adicionar novas tarefas por meio de um método chamado 
+newTask, que aceita parâmetros como nome, foto e dificuldade da tarefa.
+
+Por fim, a aula enfatizou a importância de utilizar o Inherited Widget para gerenciar dados de forma 
+centralizada, preparando o terreno para a próxima etapa, onde aprenderemos a integrar o TaskInherited em 
+outros contextos e entender melhor os métodos of() e updateShouldNotify().
+
+artigo do Martin Jablecník, em inglês :
+https://dev.to/mjablecnik/most-popular-flutter-state-management-in-2022-3he9
+
+Qual a diferença entre Inherited Widget, Stateless Widget e Stateful Widget?
+Os três são templates pré-prontos de widgets que podemos customizar, porém cada um possui uma vantagem única:
+
+Stateless: É o mais simples e mais leve, não precisa de muito para funcionar, é estático;
+Stateful: É menos simples e precisa do setState para se reconstruir, é dinâmico;
+Inherited: É mais complexo e está ligado aos dados armazenados e não necessariamente à tela.
+
+Exatamente, arrasou! Se fossemos dividir os conceitos, poderíamos dizer que o Stateless e o Stateful são 
+Front-End e o Inherited é Back-End.
+==========================================================================================================
+Nesta aula, aprendemos sobre o Update Should Notify e como ele funciona dentro do Inherited Widget. O Update 
+Should Notify é um observador que monitora o estado das informações, como a lista de tarefas. Ele compara o 
+estado anterior da lista com o estado atual para determinar se deve notificar os widgets que dependem dessa 
+informação.
+
+Se o tamanho da lista de tarefas mudar, o método retorna true, notificando os widgets. Caso contrário, retorna 
+false, evitando notificações desnecessárias que poderiam prejudicar a performance do projeto.
+
+Além disso, discutimos como utilizar o TaskInherited no nosso projeto. Para isso, ele deve ser o pai de todos 
+os widgets que precisam acessar suas informações. Colocamos o TaskInherited no main.dart, tornando-o o pai da 
+tela inicial (InitialScreen).
+
+Por fim, aprendemos a acessar a lista de tarefas dentro do TaskInherited usando o método of(context), que nos 
+permite acessar as informações armazenadas no Inherited Widget. Essa abordagem nos ajuda a exibir dinamicamente 
+a lista de tarefas em vez de usar tarefas estáticas.
+
+Na próxima aula, será abordado o conceito de contexto no Flutter, que é fundamental para entender melhor o 
+funcionamento do of(context).
+==========================================================================================================
+Claro! Nesta aula, exploramos o conceito de contexto no Flutter, que é fundamental para entender como os 
+widgets interagem entre si. O contexto é comparado a situações do dia a dia, onde a resposta a uma pergunta 
+pode variar dependendo do ambiente.
+
+Aprendemos que o contexto é diferente do estado. Enquanto o estado pode mudar (como o nível de um jogo), o contexto 
+se refere à posição e à relação entre os widgets na árvore de widgets. A árvore de widgets é uma estrutura que 
+mostra como os widgets pais e filhos estão organizados.
+
+Além disso, discutimos o método .of(context), que permite acessar informações de um InheritedWidget, como o 
+TaskInherited. Esse método é essencial para obter dados de um contexto específico dentro da árvore de widgets.
+
+Por fim, enfatizamos a importância de entender a relação entre as telas e como elas representam contextos 
+diferentes no Flutter. Se precisar de mais detalhes ou exemplos, estou aqui para ajudar!
+
+* Para saber mais: a Importância do BuildContext
+
+Em Flutter, BuildContext é um conceito fundamental que representa a localização de um widget na árvore de widgets. 
+Ele é frequentemente usado para acessar informações ou funcionalidades específicas do Flutter, como recursos locais, 
+temas, tradução de textos e para construir a hierarquia de widgets.
+
+Algumas coisas importantes a se saber sobre o BuildContext:
+
+Identificação na árvore de widgets: cada widget em Flutter tem seu próprio contexto. O BuildContext identifica a 
+posição de um widget específico na hierarquia de widgets. É uma maneira de rastrear a localização relativa do 
+widget na árvore de widgets.
+
+Acesso a recursos locais: podemos usar o BuildContext para acessar recursos locais, como imagens, fontes, cores, 
+textos traduzidos e muito mais. Isso é feito usando métodos como MediaQuery.of(context) para obter informações 
+sobre o tamanho da tela, Theme.of(context) para obter informações sobre o tema atual, Scaffold.of(context) para 
+obter um objeto Scaffold pai e assim por diante.
+
+Construção de widgets: o BuildContext é frequentemente usado ao construir widgets em Flutter. O construtor do 
+widget geralmente recebe um parâmetro BuildContext, que é usado para fornecer informações sobre a localização 
+do widget na árvore de widgets.
+
+Navegação e roteamento: ao construir aplicativos com navegação, o BuildContext também é usado para navegar 
+entre telas ou rotas. Você pode usar o Navigator para adicionar, substituir ou remover telas da pilha de 
+páginas (que é diferente de hierarquia de widgets), e o BuildContext é frequentemente usado como parte desse 
+processo.
+
+Passagem de contexto: em muitos casos, você precisará passar o BuildContext para widgets filhos, para que 
+eles possam acessar informações relevantes. Por exemplo, ao criar uma função de callback para um botão, você 
+pode passar o BuildContext para que o botão saiba onde ele está na árvore de widgets.
+
+Aqui está um exemplo simples de como o BuildContext é usado ao construir um widget:
+
+Widget build(BuildContext context) {
+  return RaisedButton(
+    onPressed: () {
+      // Usando o context para acessar o tema atual
+      Theme.of(context).textTheme.bodyText1;
+      // Ou para navegar para outra tela
+      Navigator.of(context).pushNamed('/outraTela');
+    },
+    child: Text('Clique em mim'),
+  );
+}
+
+Em resumo, o BuildContext é uma parte crucial do desenvolvimento em Flutter, pois permite que você acesse 
+recursos e informações relevantes à medida que constrói e gerencia widgets na árvore de widgets. 
+==========================================================================================================
+Nesta aula, aprendemos a integrar a adição de tarefas em nosso aplicativo Flutter. Começamos ajustando o 
+botão "Adicionar" na tela de formulário, onde comentamos os prints das informações e substituímos a mensagem 
+do ScaffoldMessenger para "Criando uma nova Tarefa".
+
+Em seguida, utilizamos a função newTask do TaskInherited para adicionar a nova tarefa à lista, passando os 
+dados coletados dos campos de texto. Foi importante garantir que o contexto utilizado na tela de formulário 
+fosse o mesmo da tela inicial, para que a nova tarefa fosse corretamente adicionada à lista. Para isso, 
+passamos o contexto da tela inicial como parâmetro para o construtor do FormScreen.
+
+Por fim, ao realizar um hot reload e testar a funcionalidade, conseguimos adicionar a nova tarefa à lista, 
+embora tenha surgido um bug relacionado ao carregamento da imagem, que será abordado na próxima aula.
+==========================================================================================================
+

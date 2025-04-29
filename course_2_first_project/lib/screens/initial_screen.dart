@@ -1,4 +1,4 @@
-import 'package:first_project/components/task.dart';
+import 'package:first_project/data/task_inherited.dart';
 import 'package:first_project/screens/form_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -20,18 +20,16 @@ class _InitialScreenState extends State<InitialScreen> {
         backgroundColor: Colors.amber,
       ),
       body: ListView(
-        children: const [
-          Task('Aprender Flutter', 'assets/images/flutter.png', 3),
-          Task('Ler', 'assets/images/book.jpg', 2),
-          Task('Jogar', 'assets/images/game.jpg', 1),
-          SizedBox(height: 100),
-        ],
+        padding: EdgeInsets.only(top: 8, bottom: 70),
+        children: TaskInherited.of(context).taskList,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => FormScreen()),
+            MaterialPageRoute(
+              builder: (contextNew) => FormScreen(taskContext: context),
+            ),
           );
         },
         backgroundColor: Colors.amber,

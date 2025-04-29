@@ -1,7 +1,10 @@
+import 'package:first_project/data/task_inherited.dart';
 import 'package:flutter/material.dart';
 
 class FormScreen extends StatefulWidget {
-  const FormScreen({super.key});
+  const FormScreen({super.key, required this.taskContext});
+
+  final BuildContext taskContext;
 
   @override
   State<FormScreen> createState() => _FormScreenState();
@@ -13,6 +16,22 @@ class _FormScreenState extends State<FormScreen> {
   TextEditingController imageController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+
+  bool valueValidated(String? value) {
+    if (value == null || value.isEmpty) {
+      return true;
+    }
+    return false;
+  }
+
+  bool difficultyValidated(String? value) {
+    if (value != null && value.isNotEmpty) {
+      if (int.parse(value) < 1 || int.parse(value) > 5) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +62,7 @@ class _FormScreenState extends State<FormScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       validator: (String? value) {
-                        if (value == null || value.isEmpty) {
+                        if (valueValidated(value)) {
                           return 'Nome da tarefa não pode ser vazio';
                         }
                         return null;
@@ -63,10 +82,10 @@ class _FormScreenState extends State<FormScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       validator: (String? value) {
-                        if (value!.isEmpty ||
-                            int.parse(value) < 1 ||
-                            int.parse(value) > 5) {
-                          return 'Dificuldade não pode ser vazio e deve ser entre 1 e 5';
+                        if (valueValidated(value)) {
+                          if (difficultyValidated(value)) {
+                            return 'Dificuldade não pode ser vazio e deve ser entre 1 e 5';
+                          }
                         }
                         return null;
                       },
@@ -89,7 +108,7 @@ class _FormScreenState extends State<FormScreen> {
                         setState(() {});
                       },
                       validator: (String? value) {
-                        if (value!.isEmpty || !value.startsWith('https://')) {
+                        if (valueValidated(value)) {
                           return 'URL inválida';
                         }
                         return null;
@@ -133,9 +152,17 @@ class _FormScreenState extends State<FormScreen> {
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        print(nameController.text);
-                        print(int.parse(difficultyController.text));
-                        print(imageController.text);
+                        // print(nameController.text);
+                        // print(int.parse(difficultyController.text));
+                        // print(imageController.text);
+
+                        // pegando o contexto da tela inicial (com widget.taskContext) e adicionando a tarefa
+                        TaskInherited.of(widget.taskContext).newTask(
+                          nameController.text,
+                          imageController.text,
+                          int.parse(difficultyController.text),
+                        );
+
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('Tarefa criada com sucesso'),
