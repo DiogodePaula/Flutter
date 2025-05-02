@@ -1,0 +1,30 @@
+Durante a videoaula, falamos de um livro de receitas - um cookbook - bastante especial, 
+pois ele contém algumas “receitas” sobre a persistência interna no Flutter.
+
+Clique aqui para acessar o cookbook:
+https://docs.flutter.dev/cookbook/persistence
+==========================================================================================================
+Acabamos de escolher o pacote para nosso projeto! Mas os pacotes que vimos aqui não são os únicos no mercado, 
+existem outros pacotes com diferentes usabilidades e você pode dar uma olhada pessoalmente neles:
+
+Hive: um pacote de banco de dados NoSQL muito veloz e muito popular;
+ObjectBox: um pacote simples para armazenar objetos do tipo Dart!
+==========================================================================================================
+flutter pub add sqflite
+
+Nesta aula, aprendemos sobre a instalação do pacote SQFLite no nosso projeto Flutter. O instrutor, Kako, enfatiza 
+a importância de consultar a documentação do pacote no site pub.dev. Ele apresenta duas formas de instalar o 
+pacote: através do terminal com o comando flutter pub add sqflite ou manualmente, editando o arquivo pubspec.yaml.
+
+Kako prefere a instalação manual, pois assim pode definir a versão do pacote, evitando problemas de compatibilidade. 
+Ele explica a estrutura do pubspec.yaml, onde são listadas as dependências do projeto, e destaca a importância de 
+manter a versão do pacote consistente com a utilizada nas aulas. Por fim, ele orienta a adicionar o pacote sqflite 
+com a versão específica e a executar o comando "Pub get" para finalizar a instalação.
+==========================================================================================================
+
+Qual a grande vantagem da persistência interna para o nosso projeto?
+Por padrão, precisamos de um pacote para permitir a persistência de dados em um projeto.
+É isso aí! No nosso caso, optamos pelo famoso SQFlite pela qualidade e possibilidades oferecidas por esse pacote.
+
+Salvar informações, assim podemos abrir e fechar nossos aplicativos sem medo de perder dados preciosos.
+Isso mesmo! Agora não precisamos ter medo de fechar nosso app.
