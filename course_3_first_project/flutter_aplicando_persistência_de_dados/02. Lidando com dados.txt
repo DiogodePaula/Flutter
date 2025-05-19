@@ -1,0 +1,59 @@
+Na aula sobre "Lidando com dados" do curso de Flutter, aprendemos a abrir um banco de dados utilizando o 
+pacote SQFLite. O instrutor, Kako, orienta a criar um arquivo chamado database.dart na pasta "data" do 
+projeto.
+
+O primeiro passo é criar um método assíncrono chamado getDatabase(), que retorna um objeto do tipo 
+Future<Database>. Dentro desse método, definimos um caminho (path) para o banco de dados usando a função 
+join() do pacote path, que combina o caminho obtido pela função getDatabasesPath() com o nome do arquivo 
+do banco de dados, que será 'task.db'.
+
+Como a função getDatabasesPath() é assíncrona, utilizamos a palavra-chave await para garantir que o caminho 
+seja obtido antes de prosseguir. Em seguida, usamos a função openDatabase(path) para abrir o banco de dados 
+e, caso ele não exista, criá-lo utilizando uma função onCreate() que executará uma tabela que ainda será 
+definida. Por fim, especificamos a versão do banco de dados como 1.
+
+A aula enfatiza a importância de consultar a documentação e a organização do código para facilitar o 
+desenvolvimento.
+==========================================================================================================
+
+Nesta aula, aprendemos a criar e estruturar um banco de dados em Flutter. O instrutor explicou como implementar 
+o método getDatabase(), que abre ou cria um banco de dados. Em seguida, focamos na criação de uma tabela para 
+armazenar tarefas, que inclui três informações principais: nome, dificuldade e imagem.
+
+O instrutor detalhou a sintaxe SQL necessária para criar a tabela, utilizando uma string para definir sua 
+estrutura. Ele destacou a importância de usar letras maiúsculas nos comandos SQL e de especificar 
+corretamente os tipos de dados para cada coluna. Ao final, foram definidas constantes para os nomes das 
+colunas, garantindo uma organização adequada da tabela. A aula foi apresentada de forma acessível, mesmo 
+para aqueles sem experiência prévia em SQL.
+==========================================================================================================
+
+Nesta aula, aprendemos sobre como lidar com dados em um banco de dados utilizando o conceito de DAO (Data 
+Access Object). O instrutor explica a importância de dividir responsabilidades em arquivos diferentes para 
+manter o código organizado.
+
+Começamos criando um arquivo chamado task_dao.dart, onde implementamos a classe TaskDao, que será responsável 
+pela comunicação com o banco de dados. Dentro dessa classe, definimos a tabela e as constantes relacionadas 
+a ela como estáticas.
+
+Além disso, foram introduzidos métodos que serão utilizados para manipular o banco de dados, como save(Task 
+tarefa), findAll(), find(String nomeDaTarefa) e delete(String nomeDaTarefa). Esses métodos serão responsáveis 
+por salvar, buscar e deletar tarefas no banco de dados, sendo todos assíncronos para lidar com a comunicação 
+que pode demorar.
+
+A aula enfatiza a importância de ter um único arquivo responsável por todas as operações relacionadas ao banco 
+de dados, facilitando a manutenção e a organização do código.
+==========================================================================================================
+
+Path/Caminho: Para abrir/criar um banco de dados, precisamos saber qual o caminho do arquivo; esse caminho 
+é o endereço onde nosso arquivo foi salvo no dispositivo. Cada dispositivo possui um caminho diferente e, 
+para sabermos qual o caminho padrão, utilizamos o pacote path.
+
+Estrutura de Dados: Quando montamos nosso banco de dados, estamos definindo/delimitando seu formato, quais 
+serão suas características, sua quantidade de informação para cada dado salvo. No nosso caso, nossos dados 
+precisam de nome, dificuldade, imagem (e quem sabe nível). Para isso, criamos uma variável do tipo string e 
+nela usamos a linguagem SQL para produzir um banco de dados que será lido pelo SQFLite.
+
+DAO: Seguindo as boas práticas, implementamos uma forma de separação entre o banco de dados e o código em 
+Flutter, garantindo que os métodos que se comunicam com o SQL sejam separados de quaisquer outros métodos 
+que não interagem com o banco. O Objeto de Acesso a Dados (DAO) é considerado uma interface que integra e 
+ao mesmo tempo divide o mundo do Flutter e o mundo do Back-End.
