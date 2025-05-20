@@ -1,0 +1,50 @@
+Nesta aula, aprendemos sobre o conceito de CRUD, que é um acrônimo para as operações básicas de manipulação 
+de dados em um banco de dados: criar (create), ler (read), atualizar (update) e deletar (delete). O instrutor, 
+Kako, explicou que estamos implementando essas operações em nosso aplicativo usando o Flutter e o Dart, com 
+a ajuda do pacote SQFLite.
+
+Os métodos que precisamos implementar no nosso DAO (Data Access Object) são: save (para criar e atualizar), 
+findAll (para ler todas as tarefas), find (para ler uma tarefa específica) e delete (para remover uma tarefa). 
+O instrutor também nos orientou a consultar a documentação do SQFLite para entender como usar os métodos 
+insert, query, update e delete, que são essenciais para manipular os dados no banco.
+
+Além disso, foi enfatizado que, ao lidar com a documentação, é normal sentir-se um pouco perdido no início, 
+mas que a prática e a implementação ajudarão a esclarecer as dúvidas. A aula concluiu com a motivação para 
+começarmos a construir nosso código baseado nesses conceitos.
+
+Github do SQFLite. 
+https://github.com/tekartik/sqflite/blob/master/sqflite/doc/sql.md
+==========================================================================================================
+
+Nesta aula, aprendemos a criar uma função chamada toList, que transforma uma lista de mapas (recebida do 
+banco de dados) em uma lista de objetos do tipo Task. O processo envolve:
+
+Definição da função: A função toList recebe uma lista de mapas do tipo Map<String, dynamic> e retorna 
+uma lista de tarefas (List<Task>).
+Looping: Utilizamos um loop for para iterar sobre cada mapa na lista de tarefas, onde cada mapa contém 
+informações como nome, imagem e dificuldade.
+Criação de objetos: Para cada mapa, criamos um objeto Task utilizando os dados do mapa e adicionamos 
+esse objeto à lista de tarefas.
+Retorno da lista: Após o loop, a lista de tarefas é retornada.
+
+Além disso, a função toList é integrada ao método findAll, que agora retorna uma lista de tarefas em vez de 
+uma lista de mapas. Essa transformação é essencial para que possamos trabalhar com os dados de forma mais 
+eficiente em nosso aplicativo.
+
+==========================================================================================================
+
+Nesta aula, aprendemos a implementar o método find, que é uma versão específica do findAll para buscar uma 
+única tarefa no banco de dados. O processo começa com a abertura do banco de dados, seguido pela leitura da 
+tabela, mas, ao contrário do findAll, que lê todas as entradas, o find busca uma tarefa específica.
+
+Os passos principais incluem:
+
+Abrir o banco de dados.
+Utilizar o método query para buscar na tabela, especificando o parâmetro where para filtrar os resultados 
+com base no nome da tarefa.
+Usar whereArgs para passar o nome da tarefa que estamos procurando.
+Retornar o resultado em formato de lista.
+
+Além disso, foram utilizados prints para ajudar na depuração e visualização do que está acontecendo durante 
+a execução do código. Assim, conseguimos encontrar e retornar uma tarefa específica do banco de dados de forma 
+eficiente.
