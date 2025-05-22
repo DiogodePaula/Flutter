@@ -1,4 +1,5 @@
-import 'package:first_project/data/task_inherited.dart';
+import 'package:first_project/components/task.dart';
+import 'package:first_project/data/task_dao.dart';
 import 'package:flutter/material.dart';
 
 class FormScreen extends StatefulWidget {
@@ -156,12 +157,20 @@ class _FormScreenState extends State<FormScreen> {
                         // print(int.parse(difficultyController.text));
                         // print(imageController.text);
 
-                        // pegando o contexto da tela inicial (com widget.taskContext) e adicionando a tarefa
-                        TaskInherited.of(widget.taskContext).newTask(
-                          nameController.text,
-                          imageController.text,
-                          int.parse(difficultyController.text),
+                        TaskDao().save(
+                          Task(
+                            nameController.text,
+                            imageController.text,
+                            int.parse(difficultyController.text),
+                          ),
                         );
+
+                        // pegando o contexto da tela inicial (com widget.taskContext) e adicionando a tarefa
+                        // TaskInherited.of(widget.taskContext).newTask(
+                        //   nameController.text,
+                        //   imageController.text,
+                        //   int.parse(difficultyController.text),
+                        // );
 
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(

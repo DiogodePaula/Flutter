@@ -1,0 +1,94 @@
+Nesta aula, aprendemos a integrar o banco de dados com nosso aplicativo Flutter, garantindo que as tarefas 
+persistam mesmo após o fechamento do app. Começamos removendo o ListView que exibia as tarefas e substituímos 
+por um Padding para manter o espaçamento.
+
+Em seguida, introduzimos o FutureBuilder, que é responsável por buscar os dados do banco de dados de forma 
+assíncrona. Utilizamos o método findAll do task_dao para obter as tarefas. O FutureBuilder requer um future 
+e um builder, onde o snapshot é utilizado para acessar os dados retornados.
+
+A lista de tarefas é armazenada em uma variável e, para evitar problemas com dados nulos, aplicamos o 
+conceito de null safety. Por fim, utilizamos o ListView.builder para construir a lista de tarefas de forma 
+eficiente, carregando apenas as que estão visíveis na tela, o que melhora a performance do aplicativo.
+
+Acabamos de ver o FutureBuilder, um widget capaz de carregar informações assíncronas na tela! Porém, o 
+FutureBuilder tem um ponto fraco: ele espera pela informação uma única vez e quando recebe o que pediu, 
+acabou, é isso, não tem mais nada.
+
+Como solucionamos esse ponto fraco?
+
+O StreamBuilder é uma das soluções, caso suas informações venham a todo momento, ou seja, quando seu app 
+precisa ficar de olho nas informações a toda hora.
+
+Para os curiosos e curiosas de plantão, separei aqui a documentação oficial do StreamBuilder e também um 
+artigo muito bem escrito, em inglês, do Shaiq Khan.
+
+==========================================================================================================
+
+Nesta aula, o instrutor Kako aborda a finalização de condições e cláusulas no projeto de um aplicativo 
+Flutter que utiliza persistência de dados com SQFLite. Ele explica que, antes de executar o aplicativo, 
+é necessário garantir que todas as condições para a exibição da tela estejam corretas, especialmente em 
+relação a dados nulos ou vazios.
+
+O instrutor demonstra como criar uma tela simples que informa ao usuário que não há tarefas no banco de 
+dados, utilizando um ícone de erro e uma mensagem de texto. Ele também aborda como lidar com diferentes 
+estados de conexão, como quando não há conexão, quando está aguardando ou quando está ativo, retornando 
+um indicador de carregamento e uma mensagem apropriada para cada situação.
+
+Por fim, ele destaca a importância de tratar erros e exceções, mesmo que de forma simples, para garantir 
+uma melhor experiência ao usuário. A aula termina com a execução do aplicativo, que confirma que não há 
+tarefas cadastradas até o momento.
+==========================================================================================================
+
+Nesta aula, aprendemos a implementar a funcionalidade de deletar uma tarefa em um aplicativo Flutter que 
+utiliza persistência de dados. O instrutor, Kako, mostrou como adicionar um botão que, ao ser pressionado 
+por um tempo (usando onLongPress), chama a função de deletar a tarefa correspondente no banco de dados.
+
+Os passos principais incluíram:
+
+Acessar o arquivo de tarefas e localizar o botão que já existia.
+Adicionar a funcionalidade de onLongPress para deletar a tarefa usando o método delete do TaskDao.
+Implementar um botão de "refresh" na tela inicial para atualizar a interface e refletir as mudanças após 
+a exclusão de uma tarefa.
+Testar a funcionalidade para garantir que a tarefa fosse realmente deletada e que a tela fosse atualizada 
+corretamente.
+
+Ao final, foi demonstrado que o aplicativo agora possui todas as operações básicas de CRUD (Criar, Ler, 
+Atualizar e Deletar) funcionando corretamente.
+
+
+==========================================================================================================
+
+E para fecharmos com chave de ouro vamos para um último passo: Olhar para trás e ver o quanto você aprendeu.
+
+FutureBuilder: Widget de construção de tela capaz de esperar por uma informação assíncrona. O FutureBuilder 
+precisa obrigatoriamente de dois parâmetros: O future:, responsável pela informação assíncrona e o builder:, 
+responsável pela construção da tela. Vale lembrar que usamos o conceito de snapshot como variável capaz de 
+armazenar as informações assíncronas.
+
+ConnectionState: Aprendemos que ao lidar com banco de dados (ou qualquer informação que venha de fora do nosso 
+projeto) temos de nos alertar do tempo de espera da informação. Hoje é muito comum acreditarmos que, por ser 
+extremamente veloz, não temos um tempo de espera ao receber dados. Porém, existe um momento em que as informações 
+não estão completas e, nesse caso, usamos o ConnectionState (que é o estado atual do snapshot) para construir 
+diversas telas dependendo do estado da informação.
+
+Adicionar informações no DB: Na parte crucial da implementação no nosso projeto, adicionamos ao formulário a 
+habilidade de salvar uma tarefa diretamente no banco de dados, para isso relembramos os dados controlados 
+vindo do formulário e aplicamos a função save() vinda do DAO e, dessa forma, adicionamos uma nova tarefa ao 
+banco de dados.
+
+Deletar informações no DB: Para remoção de Tarefas no nosso banco de dados, foi implementado o método delete() 
+dentro da Classe Task, usando uma ação secundária (onLongPress) no ElevatedButton anteriormente implementado.
+==========================================================================================================
+
+Chegou o momento que todos estávamos esperando! Vou propor a você um desafio... na verdade, DOIS desafios! 
+Sabe por quê? Por que eu sei que você dá conta. :)
+
+Os desafios são os seguintes:
+
+Implementar uma mensagem de confirmação quando o usuário tentar deletar uma tarefa: sugiro explorar um 
+novo widget do catálogo;
+Salvar os níveis das tarefas: Nosso app não salva os níveis; sabe o motivo? Por que não há níveis no banco 
+de dados! Dica do dia: Alterar um banco de dados sequencial pode ser uma dor de cabeça, então, sugiro criar 
+um novo, mudando o _tablename.
+
+Vou deixar um GIF pra te guiar!
