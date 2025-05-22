@@ -1,0 +1,41 @@
+Nesta aula, aprendemos a implementar a função save, que é responsável por criar e atualizar tarefas em um 
+banco de dados. O processo começa com a verificação se a tarefa já existe, utilizando a função find. Se a 
+tarefa não existir, ela é inserida no banco de dados; caso contrário, um update é realizado para modificar 
+os valores da tarefa existente, mantendo o nome inalterado. Para isso, utilizamos métodos como insert e 
+update, além de preparar os dados em formato de mapa, que é o que o banco de dados espera. A aula também 
+enfatiza a importância de evitar duplicação de tarefas no banco de dados.
+
+==========================================================================================================
+
+Nesta aula, aprendemos a criar um método chamado toMap, que converte objetos de tarefa em mapas, que são 
+necessários para a persistência de dados em um banco de dados. O método toMap recebe uma tarefa e cria um 
+mapa do tipo Map<String, dynamic>, onde as chaves são strings e os valores são dinâmicos.
+
+O processo envolve:
+
+    Criar um mapa vazio.
+    Associar os valores da tarefa (como nome, dificuldade e imagem) às chaves correspondentes no mapa.
+    Imprimir mensagens no console para verificar se a conversão foi bem-sucedida.
+    Retornar o mapa completo.
+
+Além disso, o método toMap é utilizado na função save, que gerencia a inserção e atualização de tarefas no 
+banco de dados, garantindo que as informações sejam corretamente armazenadas e atualizadas. A aula também 
+menciona a necessidade de implementar a função de deleção posteriormente.
+
+==========================================================================================================
+
+Nesta aula, aprendemos a implementar o método delete no contexto do CRUD (Criar, Ler, Atualizar e Deletar) 
+em Flutter, utilizando o SQFLite para persistência de dados. O método delete é responsável por remover uma 
+tarefa específica do banco de dados.
+
+Os principais pontos abordados foram:
+
+    Print de Deleção: Iniciamos o método com um print informando que uma tarefa está sendo deletada.
+    Abertura do Banco de Dados: Utilizamos await getDatabase() para abrir o banco de dados, enfatizando 
+    a importância do await para evitar erros.
+    Comando de Deleção: Implementamos o comando bancoDeDados.delete(_tablename, where: '$_name = ?', 
+    whereArgs: [nomeDaTarefa]), que especifica qual tarefa deve ser deletada com base no nome da tarefa.
+    Recapitulação do CRUD: Ao final, foi feita uma recapitulação das funções do CRUD que já foram 
+    implementadas: save, toMap, findAll, toList, find, e agora o delete.
+
+Com isso, completamos a implementação do CRUD em Flutter, permitindo manipular tarefas no banco de dados.

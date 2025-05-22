@@ -16,7 +16,31 @@ class TaskDao {
       '$_difficulty INTEGER'
       ')';
 
-  save(Task task) async {}
+  save(Task task) async {
+    final Database db = await getDataBase();
+    var itemExists = await find(task.title);
+    Map<String, dynamic> taskMap = toMap(task);
+
+    if (itemExists.isEmpty) {
+      await db.insert(_tableName, taskMap);
+    } else {
+      await db.update(
+        _tableName,
+        taskMap,
+        where: '$_name = ?',
+        whereArgs: [task.title],
+      );
+    }
+  }
+
+  Map<String, dynamic> toMap(Task task) {
+    final Map<String, dynamic> mapTasks = Map();
+    mapTasks[_name] = task.title;
+    mapTasks[_image] = task.imageSrc;
+    mapTasks[_difficulty] = task.difficulty;
+
+    return mapTasks;
+  }
 
   Future<List<Task>> findAll() async {
     final Database db = await getDataBase();
@@ -47,5 +71,8 @@ class TaskDao {
     return toList(result);
   }
 
-  delete(String taskName) async {}
+  delete(String taskName) async {
+    final Database db = await getDataBase();
+    await db.delete(_tableName, where: '$_name = ?', whereArgs: [taskName]);
+  }
 }
