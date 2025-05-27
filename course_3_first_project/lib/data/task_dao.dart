@@ -34,7 +34,7 @@ class TaskDao {
   }
 
   Map<String, dynamic> toMap(Task task) {
-    final Map<String, dynamic> mapTasks = Map();
+    final Map<String, dynamic> mapTasks = {};
     mapTasks[_name] = task.title;
     mapTasks[_image] = task.imageSrc;
     mapTasks[_difficulty] = task.difficulty;

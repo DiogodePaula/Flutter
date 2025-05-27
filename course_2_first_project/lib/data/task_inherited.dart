@@ -2,8 +2,7 @@ import 'package:first_project/components/task.dart';
 import 'package:flutter/widgets.dart';
 
 class TaskInherited extends InheritedWidget {
-  TaskInherited({Key? key, required Widget child})
-    : super(key: key, child: child);
+  TaskInherited({super.key, required super.child});
 
   final List<Task> taskList = [
     Task('Aprender Flutter', 'assets/images/flutter.png', 3),

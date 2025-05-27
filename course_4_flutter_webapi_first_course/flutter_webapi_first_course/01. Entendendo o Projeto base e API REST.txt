@@ -1,0 +1,32 @@
+O que é uma API?
+
+A sigla API vem do inglês Application Programming Interface e significa Interface de Programação 
+de Aplicação. Essa interface faz o intermédio entre duas aplicações, em geral, um cliente e um 
+servidor. Através da API, são definidas as regras para que essa comunicação aconteça.
+
+Imagine, por exemplo, que você está fazendo uma aplicação que depende da temperatura local para 
+funcionar. Não há como o Flutter obter essa informação sozinho, mas há serviços de meteorologia 
+que fornecem essas informações publicamente na Web via uma API. A API rege como você vai solicitar 
+as informações que precisa, e como o servidor vai lhe entregar essas informações.
+
+====================================================================================================
+
+O que é REST?
+
+A sigla REST vem do inglês Representational State Transfer e significa Transferência Representacional 
+de Estado. Ele é um conjunto de princípios e definições criado com o objetivo de impor as condições 
+sob as quais as APIs (RESTful) vão funcionar.
+
+Chamamos de RESTful as APIs que usam a abstração de arquitetura REST.
+
+No REST há um conjunto de funções derivadas do HTTP, como GET, PUT, DELETE e para que os clientes 
+possam acessar os dados do servidor. A principal característica da API REST é a ausência de estado, 
+ou seja, os servidores não salvam dados do cliente entre as solicitações.
+
+Caso tenha interesse em se aprofundar no tema de API e REST, recomendamos os seguintes materiais:
+
+O que é uma API RESTful?
+https://aws.amazon.com/pt/what-is/restful-api/
+
+O que é uma API RESTful?
+https://www.redhat.com/pt-br/topics/api/what-is-a-rest-api
