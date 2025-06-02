@@ -1,0 +1,61 @@
+Claro! Nesta aula, aprendemos sobre como funciona a comunicação na Internet, focando no protocolo 
+HTTP e na estrutura de camadas que permite essa comunicação.
+
+Começamos com um exercício mental sobre como uma pesquisa no smartphone chega ao Google, destacando 
+que essa comunicação passa por diversos pontos, como roteadores. Utilizamos o comando tracert ou 
+traceroute para visualizar o caminho que as requisições percorrem até chegar ao servidor desejado.
+
+Em seguida, discutimos as camadas da Internet: Aplicação, Transporte, Internet e Rede. O protocolo 
+IP (Internet Protocol) foi explicado como o "endereço" que identifica dispositivos na rede, enquanto 
+o HTTP (Hypertext Transfer Protocol) coordena a comunicação entre cliente e servidor.
+
+Aprendemos sobre os métodos HTTP, como GET, POST, PATCH, PUT e DELETE, além dos cabeçalhos que contêm 
+informações sobre a requisição e a resposta. Por fim, abordamos os códigos de status, que indicam o 
+resultado das requisições, como 200 (OK), 404 (Not Found) e 500 (Internal Server Error).
+
+Esses conceitos são fundamentais para entender como interagimos com APIs e como as requisições são 
+tratadas na programação. Se precisar de mais detalhes sobre algum ponto específico, é só avisar!
+
+Desconstruindo a Web - As tecnologias por trás de uma requisição, por Willian Molinari | Casa do Código:
+https://www.casadocodigo.com.br/products/livro-desconstruindo-web?_pos=4&_sid=f6f9eed36&_ss=r
+
+Redes de Computadores e a Internet: Uma Abordagem Top-Down:
+https://www.amazon.com.br/Redes-Computadores-Internet-Abordagem-Top-Down/dp/8581436773
+
+====================================================================================================
+Nesta aula, aprendemos sobre a utilização de interceptadores em requisições HTTP no Flutter, utilizando 
+a biblioteca http_interceptor. O interceptador permite que possamos monitorar e registrar informações 
+sobre as requisições e respostas de forma mais organizada.
+
+Os principais passos abordados foram:
+
+Instalação da Biblioteca: Aprendemos a instalar a biblioteca http_interceptor no arquivo pubspec.yaml.
+
+Criação do Interceptador: Criamos uma classe chamada LoggingInterceptor que implementa o 
+InterceptorContract. Essa classe possui dois métodos: interceptRequest e interceptResponse, 
+que são responsáveis por registrar as informações das requisições e respostas.
+
+Configuração do Cliente: No arquivo journal_service.dart, configuramos um cliente HTTP utilizando 
+o InterceptedClient.build, passando o nosso LoggingInterceptor como um dos interceptadores.
+
+Substituição das Chamadas HTTP: Alteramos as chamadas de http.post() e http.get() para client.post() 
+e client.get(), garantindo que as requisições fossem interceptadas.
+
+Testes e Resultados: Ao executar o aplicativo, conseguimos visualizar no console as informações 
+detalhadas das requisições e respostas, embora a apresentação ainda estivesse desorganizada.
+
+O próximo passo será melhorar a apresentação dessas informações para torná-las mais legíveis.
+
+====================================================================================================
+
+Os interceptadores notam quando uma requisição é feita ou uma resposta é recebida e nos permitem rodar 
+um bloco de código que tem acesso aos membros dessa requisição ou resposta.
+
+Exatamente! Com isso conseguimos usar o logger para mostrar nas telas as informações dos membros que capturamos!
+
+
+A biblioteca Logger nos dá a possibilidade de mostrar informações no Console, no qual nossa aplicação 
+está rodando de forma mais informativa, até quando usando cores. 
+
+Exatamente! Após capturar os membros das requisições e respostas com o Interceptador, o Logger surge 
+como uma excelente alternativa ao print para mostrar essas informações no nosso ambiente de desenvolvimento.
