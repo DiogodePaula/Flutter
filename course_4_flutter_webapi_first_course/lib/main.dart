@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_webapi_first_course/helpers/async_study.dart';
+import 'package:flutter_webapi_first_course/models/journal.dart';
+import 'package:flutter_webapi_first_course/screens/add_journal_screen.dart/add_journal_screen.dart';
 import 'package:flutter_webapi_first_course/services/journal_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,7 +11,9 @@ void main() {
   runApp(const MyApp());
 
   JournalService service = JournalService();
-  service.register("Olá, mundo!");
+  service.register(Journal.empty());
+
+  asyncStudy();
 }
 
 class MyApp extends StatelessWidget {
@@ -23,6 +28,8 @@ class MyApp extends StatelessWidget {
         // scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(color: Colors.white),
+          actionsIconTheme: IconThemeData(color: Colors.white),
+          iconTheme: IconThemeData(color: Colors.white),
           backgroundColor: Colors.black,
           elevation: 0,
         ),
@@ -33,6 +40,14 @@ class MyApp extends StatelessWidget {
       initialRoute: "home",
       routes: {
         "home": (context) => const HomeScreen(),
+      },
+      onGenerateRoute: (settings) {
+        if (settings.name == "add-journal") {
+          final Journal journal = settings.arguments as Journal;
+          return MaterialPageRoute(
+              builder: (context) => AddJournalScreen(journal: journal));
+        }
+        return null;
       },
     );
   }

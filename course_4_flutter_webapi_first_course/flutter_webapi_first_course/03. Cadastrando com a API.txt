@@ -1,0 +1,94 @@
+Quando falamos de comunicações com Web APIs, é importante entender sobre operações 
+assíncronas no Dart, afinal, quando trocamos informações com outros computadores 
+que estão na web realizamos operações que não são instantâneas, ou seja, levam tempo 
+até serem completamente executadas.
+
+Por isso, para revisar os conteúdos de assincronismo no Dart recomendamos as 
+seguintes leituras:
+
+Asynchrony Support - Language Tour | Dart:
+https://dart.dev/language/async
+
+Asynchronous programming: futures, async, await - CodeLabs | Dart:
+https://dart.dev/libraries/async/async-await
+
+==========================================================================================
+
+Para exercitarmos os nossos conhecimentos sobre Rotas Nomeadas no Flutter, decidimos que o 
+nosso projeto usaria esse tipo de navegação para trafegarmos entre nossas telas.
+
+Porém, quando criamos a Tela de Adição percebemos algo interessante: Como passamos parâmetros 
+através de uma rota nomeada, se elas são definidas no MaterialApp?
+
+Para isso configuramos o onGenerateRoute no nosso MaterialApp. Nessa propriedade teremos uma 
+função que recebe por parâmetro um RouteSettings, e ela será sempre chamada quando uma rota 
+nomeada for evocada.
+
+A RouteSettings terá várias informações sobre a rota, inclusive seu nome e os argumentos passados 
+na hora que ela foi chamada. Com isso, podemos fazer uma verificação do nome da rota, e se ele for 
+o que esperamos, podemos capturar esses argumentos para que possamos enviá-los para tela que será 
+chamada.
+
+Se desejar entender mais sobre rotas nomeadas no Flutter, recomendamos a leitura dos seguintes 
+artigos da documentação:
+
+Navigate with named routes - Flutter Cookbooks:
+https://docs.flutter.dev/cookbook/navigation/named-routes
+
+Pass arguments to a named route
+https://docs.flutter.dev/cookbook/navigation/navigate-with-arguments
+==========================================================================================
+
+Nesta aula, aprendemos a cadastrar um objeto Journal através de uma API utilizando o método 
+POST. O processo envolve transformar o objeto em um formato que a API possa entender, que é o 
+JSON. Para isso, primeiro convertemos o objeto em um Map com o método toMap().
+
+Depois, utilizamos a biblioteca dart:convert para converter esse Map em uma String JSON com 
+json.encode(). Ao enviar os dados via client.post(), especificamos o cabeçalho Content-type 
+como application/json para informar ao servidor o tipo de conteúdo que estamos enviando.
+
+Além disso, implementamos um método register() que retorna um booleano indicando se a operação 
+foi bem-sucedida, verificando o status da resposta da API. Para facilitar o registro de um Journal 
+vazio, criamos um construtor Journal.empty().
+
+Por fim, testamos o registro na função main(), onde verificamos que os dados estavam sendo 
+corretamente armazenados na nossa API. Essa aula nos ensinou a integrar nossa aplicação Flutter 
+com uma API para registrar dados de forma eficiente.
+==========================================================================================
+
+Nesta aula, aprendemos a integrar a tela de adição de registros (AddJournalScreen) com uma 
+API para salvar informações em um banco de dados.
+
+Os principais passos incluíram:
+
+Criação da Função registerJournal(): Essa função é chamada quando o botão de salvar é pressionado. 
+Ela obtém o texto do TextField usando um controlador (_contentController), atualiza o conteúdo do 
+objeto journal e o envia para a API através do JournalService.
+
+Feedback Visual: Implementamos um feedback para o usuário utilizando o Navigator.pop(), que retorna 
+um valor indicando se a operação foi bem-sucedida ou não. Esse valor é utilizado para mostrar uma 
+mensagem de sucesso (snackbar) na tela principal.
+
+Testes: Após implementar as funcionalidades, realizamos testes para garantir que os registros estavam 
+sendo salvos corretamente no banco de dados e que o feedback visual estava funcionando.
+
+Ao final, a aula preparou o terreno para a próxima etapa, que será transformar a lista na tela inicial 
+em uma lista que obtém os dados reais do banco de dados via Web API.
+
+==========================================================================================
+
+Assincronismo: Começamos fazendo uma breve revisão sobre assincronismo no Dart, pois notamos que quando 
+estamos lidando com requisições para Web APIs, essas operações não serão instantâneas, ou seja, levarão 
+um tempo para acontecer, portanto, serão assíncronas.
+
+Tela de Adição de Entradas: Vimos também que era necessário construir uma tela responsável por captar da 
+pessoa usuária as informações que serão enviadas para a Web API.
+
+Método POST: Na sequência, usamos o método POST para enviar as informações captadas para nossa Web API. 
+Para isso, foi necessário converter nosso objeto para um JSON, configurar o cabeçalho para avisarmos que 
+estamos enviando a informação usando esse padrão e verificar se a resposta do servidor indica que a entrada 
+foi criada com sucesso.
+
+SnackBar: Por fim, notamos ser extremamente importante dar um feedback para a pessoa usuária a respeito do 
+sucesso da operação assíncrona. Para isso, usamos um SnackBar que será mostrado na tela quando a resposta 
+do servidor for um 201 Created.
