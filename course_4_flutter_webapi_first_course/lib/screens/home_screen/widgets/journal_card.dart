@@ -6,7 +6,12 @@ import 'package:uuid/uuid.dart';
 class JournalCard extends StatelessWidget {
   final Journal? journal;
   final DateTime showedDate;
-  const JournalCard({Key? key, this.journal, required this.showedDate})
+  final Function refreshFunction;
+  const JournalCard(
+      {Key? key,
+      this.journal,
+      required this.showedDate,
+      required this.refreshFunction})
       : super(key: key);
 
   @override
@@ -55,7 +60,7 @@ class JournalCard extends StatelessWidget {
                       ),
                     ),
                     padding: const EdgeInsets.all(8),
-                    child: Text(WeekDay(journal!.createdAt.weekday).short),
+                    child: Text(WeekDay(journal!.createdAt).short),
                   ),
                 ],
               ),
@@ -81,13 +86,13 @@ class JournalCard extends StatelessWidget {
     } else {
       return InkWell(
         onTap: () {
-          callAddJournalScreen(context);
+          callAddJournalScreen(context, refreshFunction);
         },
         child: Container(
           height: 115,
           alignment: Alignment.center,
           child: Text(
-            "${WeekDay(showedDate.weekday).short} - ${showedDate.day}",
+            "${WeekDay(showedDate).short} - ${showedDate.day}",
             style: const TextStyle(fontSize: 12),
             textAlign: TextAlign.center,
           ),
@@ -97,7 +102,7 @@ class JournalCard extends StatelessWidget {
   }
 }
 
-callAddJournalScreen(BuildContext context) {
+callAddJournalScreen(BuildContext context, Function refreshFunction) {
   Navigator.pushNamed(
     context,
     "add-journal",
@@ -115,6 +120,13 @@ callAddJournalScreen(BuildContext context) {
           backgroundColor: Colors.green,
         ),
       );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Erro ao registrar!"),
+        ),
+      );
     }
+    refreshFunction();
   });
 }

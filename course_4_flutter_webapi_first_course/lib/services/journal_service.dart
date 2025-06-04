@@ -31,8 +31,22 @@ class JournalService {
     return false;
   }
 
-  Future<String> get() async {
+  Future<List<Journal>> getAll() async {
     http.Response response = await client.get(Uri.parse(getUrl()));
-    return response.body;
+
+    if (response.statusCode != 200) {
+      throw Exception("Error fetching journals");
+    }
+
+    List<Journal> journals = [];
+
+    // cada objeto dentro da lista e um map, precisa transformar esse map em journal
+    List<dynamic> listDynamic = json.decode(response.body);
+
+    for (var item in listDynamic) {
+      journals.add(Journal.fromMap(item));
+    }
+
+    return journals;
   }
 }
