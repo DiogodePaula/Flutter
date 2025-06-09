@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_webapi_second_course/models/journal.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'models/journal.dart';
+
 import 'screens/add_journal_screen/add_journal_screen.dart';
 import 'screens/home_screen/home_screen.dart';
 
@@ -34,10 +35,14 @@ class MyApp extends StatelessWidget {
       },
       onGenerateRoute: (routeSettings) {
         if (routeSettings.name == "add-journal") {
-          final journal = routeSettings.arguments as Journal;
+          Map<String, dynamic> map =
+              routeSettings.arguments as Map<String, dynamic>;
+          final journal = map["journal"] as Journal;
+          final isEdit = map["is_editing"];
+
           return MaterialPageRoute(
             builder: (context) {
-              return AddJournalScreen(journal: journal);
+              return AddJournalScreen(journal: journal, isEdit: isEdit);
             },
           );
         }

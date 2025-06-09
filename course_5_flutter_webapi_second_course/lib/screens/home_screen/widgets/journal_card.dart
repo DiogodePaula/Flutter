@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_webapi_second_course/screens/common/confirmation_dialog.dart';
+import 'package:flutter_webapi_second_course/services/journal_service.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../helpers/weekday.dart';
@@ -79,6 +81,12 @@ class JournalCard extends StatelessWidget {
                   ),
                 ),
               ),
+              IconButton(
+                onPressed: () {
+                  deleteJournal(context, journal!);
+                },
+                icon: const Icon(Icons.delete),
+              )
             ],
           ),
         ),
@@ -109,14 +117,21 @@ class JournalCard extends StatelessWidget {
       updatedAt: showedDate,
     );
 
+    Map<String, dynamic> map = {};
+
     if (journal != null) {
       innerJournal = journal;
+      map['is_editing'] = false;
+    } else {
+      map['is_editing'] = true;
     }
+
+    map['journal'] = innerJournal;
 
     Navigator.pushNamed(
       context,
       'add-journal',
-      arguments: innerJournal,
+      arguments: map,
     ).then((value) {
       refreshFunction();
 
@@ -128,6 +143,41 @@ class JournalCard extends StatelessWidget {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Houve uma falha ao registar.")),
         );
+      }
+    });
+  }
+
+  deleteJournal(BuildContext context, Journal journal) {
+    JournalService journalService = JournalService();
+
+    showConfirmationDialog(
+      context,
+      content:
+          "Deseja realmente remover o diário de ${WeekDay(journal.createdAt)}?",
+      confirmButtonText: "Remover",
+    ).then((value) {
+      if (value != null) {
+        if (value) {
+          journalService.delete(journal.id).then((value) {
+            if (value) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Registro deletado com sucesso."),
+                  backgroundColor: Colors.green,
+                ),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Houve uma falha ao deletar."),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            }
+
+            refreshFunction();
+          });
+        }
       }
     });
   }

@@ -6,7 +6,10 @@ import '../../services/journal_service.dart';
 
 class AddJournalScreen extends StatefulWidget {
   final Journal journal;
-  const AddJournalScreen({Key? key, required this.journal}) : super(key: key);
+  final bool isEdit;
+  const AddJournalScreen(
+      {Key? key, required this.journal, required this.isEdit})
+      : super(key: key);
 
   @override
   State<AddJournalScreen> createState() => _AddJournalScreenState();
@@ -48,13 +51,24 @@ class _AddJournalScreenState extends State<AddJournalScreen> {
   registerJournal(BuildContext context) async {
     JournalService journalService = JournalService();
     widget.journal.content = contentController.text;
-    journalService.register(widget.journal).then((value) {
-      if (value) {
-        Navigator.pop(context, DisposeStatus.success);
-      } else {
-        Navigator.pop(context, DisposeStatus.error);
-      }
-    });
+
+    if (widget.isEdit) {
+      journalService.register(widget.journal).then((value) {
+        if (value) {
+          Navigator.pop(context, DisposeStatus.success);
+        } else {
+          Navigator.pop(context, DisposeStatus.error);
+        }
+      });
+    } else {
+      journalService.edit(widget.journal.id, widget.journal).then((value) {
+        if (value) {
+          Navigator.pop(context, DisposeStatus.success);
+        } else {
+          Navigator.pop(context, DisposeStatus.error);
+        }
+      });
+    }
   }
 }
 
