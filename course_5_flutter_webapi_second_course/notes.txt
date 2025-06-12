@@ -1,0 +1,7 @@
+
+npm install -g json-server-auth
+
+json-server-auth --watch --host O_SEU_IP_AQUI db.json
+
+rodar com o arquivo de rotas 
+json-server-auth --watch --host O_SEU_IP_AQUI db.json -r routes.json
