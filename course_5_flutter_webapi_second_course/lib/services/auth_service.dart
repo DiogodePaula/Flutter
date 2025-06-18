@@ -29,7 +29,7 @@ class AuthService {
     saveUserInfo(response.body);
   }
 
-  register(String email, String password) async {
+  Future<bool> register(String email, String password) async {
     http.Response response =
         await client.post(Uri.parse("${url}register"), body: {
       "email": email,
@@ -41,6 +41,7 @@ class AuthService {
     }
 
     saveUserInfo(response.body);
+    return true;
   }
 
   saveUserInfo(String body) async {

@@ -5,3 +5,20 @@ json-server-auth --watch --host O_SEU_IP_AQUI db.json
 
 rodar com o arquivo de rotas 
 json-server-auth --watch --host O_SEU_IP_AQUI db.json -r routes.json
+
+----------------------------------------------------------------------------------------------------------------
+
+Os cabeçalhos HTTP são uma forma do cliente enviar para o servidor informações importantes sobre a requisição, 
+e da mesma forma, do servidor enviar para o cliente informações sobre a resposta. Um cabeçalho de solicitação é 
+composto por seu nome case-insensitive (não diferencia letras maiúsculas e minúsculas), seguido por dois pontos 
+':' e pelo seu valor (sem quebras de linha).
+
+Alguns dos cabeçalhos mais usados são:
+
+Authorization: Contém as credenciais para autenticar um User-Agent com o servidor;
+Last-Modified: Última data de modificação de um recurso, usado para comparar várias versões de um mesmo recurso;
+Keep-Alive: Controla por quanto tempo uma conexão persistente deve permanecer aberta;
+Accept: Informa ao servidor sobre os tipos de dados que podem ser enviados de volta. Isto é MIME-type;
+Content-Type: Indica o tipo de mídia do recurso.
+
+Caso tenha ficado com interesse de estudar mais sobre cabeçalhos HTTP, recomendamos a seguinte leitura:
