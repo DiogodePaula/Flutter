@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../helpers/weekday.dart';
 import '../../models/journal.dart';
@@ -48,27 +51,34 @@ class _AddJournalScreenState extends State<AddJournalScreen> {
     );
   }
 
-  registerJournal(BuildContext context) async {
-    JournalService journalService = JournalService();
-    widget.journal.content = contentController.text;
+  registerJournal(BuildContext context) {
+    SharedPreferences.getInstance().then((value) {
+      String? token = value.getString('token');
+      JournalService journalService = JournalService();
+      widget.journal.content = contentController.text;
 
-    if (widget.isEdit) {
-      journalService.register(widget.journal).then((value) {
-        if (value) {
-          Navigator.pop(context, DisposeStatus.success);
+      if (token != null) {
+        if (widget.isEdit) {
+          journalService.register(widget.journal, token).then((value) {
+            if (value) {
+              Navigator.pop(context, DisposeStatus.success);
+            } else {
+              Navigator.pop(context, DisposeStatus.error);
+            }
+          });
         } else {
-          Navigator.pop(context, DisposeStatus.error);
+          journalService
+              .edit(widget.journal.id, widget.journal, token)
+              .then((value) {
+            if (value) {
+              Navigator.pop(context, DisposeStatus.success);
+            } else {
+              Navigator.pop(context, DisposeStatus.error);
+            }
+          });
         }
-      });
-    } else {
-      journalService.edit(widget.journal.id, widget.journal).then((value) {
-        if (value) {
-          Navigator.pop(context, DisposeStatus.success);
-        } else {
-          Navigator.pop(context, DisposeStatus.error);
-        }
-      });
-    }
+      }
+    });
   }
 }
 

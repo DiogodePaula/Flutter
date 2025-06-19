@@ -1,4 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../models/journal.dart';
 import '../../services/journal_service.dart';
 import 'widgets/home_screen_list.dart';
@@ -22,6 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final ScrollController _listScrollController = ScrollController();
   final JournalService _journalService = JournalService();
+  int? userId;
+  String? userToken;
 
   @override
   void initState() {
@@ -48,31 +54,72 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: ListView(
-        controller: _listScrollController,
-        children: generateListJournalCards(
-          windowPage: windowPage,
-          currentDay: currentDay,
-          database: database,
-          refreshFunction: refresh,
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+                title: const Text('Sair'),
+                onTap: () {
+                  logout();
+                }),
+          ],
         ),
       ),
+      body: userId != null && userToken != null
+          ? ListView(
+              controller: _listScrollController,
+              children: generateListJournalCards(
+                windowPage: windowPage,
+                currentDay: currentDay,
+                database: database,
+                refreshFunction: refresh,
+                userId: userId!,
+                token: userToken!,
+              ),
+            )
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 
-  void refresh() async {
-    List<Journal> listJournal = await _journalService.getAll();
+  void refresh() {
+    SharedPreferences.getInstance().then((value) {
+      int? id = value.getInt('id');
+      String? token = value.getString('token');
+      String? email = value.getString('email');
 
-    setState(() {
-      database = {};
-      for (Journal journal in listJournal) {
-        database[journal.id] = journal;
-      }
+      if (id != null && token != null && email != null) {
+        setState(() {
+          userId = id;
+          userToken = token;
+        });
 
-      if (_listScrollController.hasClients) {
-        final double position = _listScrollController.position.maxScrollExtent;
-        _listScrollController.jumpTo(position);
+        _journalService
+            .getAll(id: id.toString(), token: token)
+            .then((listJournal) {
+          setState(() {
+            database = {};
+
+            for (Journal journal in listJournal) {
+              database[journal.id] = journal;
+            }
+
+            if (_listScrollController.hasClients) {
+              final double position =
+                  _listScrollController.position.maxScrollExtent;
+              _listScrollController.jumpTo(position);
+            }
+          });
+        });
+      } else {
+        Navigator.pushReplacementNamed(context, "login");
       }
+    });
+  }
+
+  void logout() {
+    SharedPreferences.getInstance().then((value) {
+      value.clear();
+      Navigator.pushReplacementNamed(context, 'login');
     });
   }
 }
