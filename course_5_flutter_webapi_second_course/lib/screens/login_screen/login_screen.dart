@@ -1,13 +1,24 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_webapi_second_course/screens/common/confirmation_dialog.dart';
+import 'package:flutter_webapi_second_course/screens/common/exeption_dialog.dart';
 import 'package:flutter_webapi_second_course/services/auth_service.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  AuthService service = AuthService();
+  final AuthService service = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -67,10 +78,40 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  void login() {
+  void login() async {
     String email = _emailController.text;
     String password = _passwordController.text;
 
-    service.login(email: email, password: password);
+    service.login(email: email, password: password).then(
+      (resultLogin) {
+        if (resultLogin) {
+          Navigator.pushReplacementNamed(context, "home");
+        }
+      },
+    ).catchError(
+      (error) {
+        showConfirmationDialog(
+          context,
+          content:
+              "Deseja criar um novo usuário usando o e-mail $email e a senha?",
+          confirmButtonText: "CRIAR",
+        ).then((value) {
+          if (value != null && value) {
+            service.register(email, password).then((resultRegister) {
+              if (resultRegister) {
+                Navigator.pushReplacementNamed(context, "home");
+              }
+            });
+          }
+        });
+      },
+      test: (error) => error is UserNotFindException,
+    ).catchError(
+      (error) {
+        showExceptionDialog(context,
+            content: "O servidor demorou para responder!");
+      },
+      test: (error) => error is TimeoutException,
+    );
   }
 }

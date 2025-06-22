@@ -1,6 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_webapi_second_course/helpers/logout.dart';
+import 'package:flutter_webapi_second_course/screens/common/exeption_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/journal.dart';
@@ -60,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ListTile(
                 title: const Text('Sair'),
                 onTap: () {
-                  logout();
+                  logout(context);
                 }),
           ],
         ),
@@ -82,44 +86,47 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void refresh() {
-    SharedPreferences.getInstance().then((value) {
-      int? id = value.getInt('id');
-      String? token = value.getString('token');
-      String? email = value.getString('email');
+    SharedPreferences.getInstance().then(
+      (value) {
+        int? id = value.getInt('id');
+        String? token = value.getString('token');
+        String? email = value.getString('email');
 
-      if (id != null && token != null && email != null) {
-        setState(() {
-          userId = id;
-          userToken = token;
-        });
-
-        _journalService
-            .getAll(id: id.toString(), token: token)
-            .then((listJournal) {
+        if (id != null && token != null && email != null) {
           setState(() {
-            database = {};
-
-            for (Journal journal in listJournal) {
-              database[journal.id] = journal;
-            }
-
-            if (_listScrollController.hasClients) {
-              final double position =
-                  _listScrollController.position.maxScrollExtent;
-              _listScrollController.jumpTo(position);
-            }
+            userId = id;
+            userToken = token;
           });
-        });
-      } else {
-        Navigator.pushReplacementNamed(context, "login");
-      }
-    });
-  }
 
-  void logout() {
-    SharedPreferences.getInstance().then((value) {
-      value.clear();
-      Navigator.pushReplacementNamed(context, 'login');
-    });
+          _journalService
+              .getAll(id: id.toString(), token: token)
+              .then((listJournal) {
+            setState(() {
+              database = {};
+
+              for (Journal journal in listJournal) {
+                database[journal.id] = journal;
+              }
+
+              if (_listScrollController.hasClients) {
+                final double position =
+                    _listScrollController.position.maxScrollExtent;
+                _listScrollController.jumpTo(position);
+              }
+            });
+          });
+        } else {
+          Navigator.pushReplacementNamed(context, "login");
+        }
+      },
+    ).catchError((error) {
+      logout(context);
+    }, test: (error) => error is HttpException).catchError(
+      (error) {
+        var innerError = error as HttpException;
+        showExceptionDialog(context, content: innerError.message);
+      },
+      test: (error) => error is HttpException,
+    );
   }
 }

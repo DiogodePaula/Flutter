@@ -1,18 +1,15 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:flutter_webapi_second_course/services/webclient.dart';
 import 'package:http/http.dart' as http;
-import 'package:http_interceptor/http/http.dart';
 
 import '../models/journal.dart';
-import 'http_interceptors.dart';
 
 class JournalService {
-  static const String url = "http://192.168.0.11:3000/";
+  String url = WebClient.url;
+  http.Client client = WebClient().client;
   static const String resource = "journals/";
-
-  http.Client client = InterceptedClient.build(
-    interceptors: [LoggingInterceptor()],
-  );
 
   String getURL() {
     return "$url$resource";
@@ -35,7 +32,10 @@ class JournalService {
     );
 
     if (response.statusCode == 201) {
-      return true;
+      if (json.decode(response.body) == "jwt expired") {
+        throw TokenNotValidException();
+      }
+      throw HttpException(response.body);
     }
 
     return false;
@@ -54,10 +54,13 @@ class JournalService {
     );
 
     if (response.statusCode == 200) {
-      return true;
+      if (json.decode(response.body) == "jwt expired") {
+        throw TokenNotValidException();
+      }
+      throw HttpException(response.body);
     }
 
-    return false;
+    return true;
   }
 
   Future<List<Journal>> getAll(
@@ -68,8 +71,10 @@ class JournalService {
     });
 
     if (response.statusCode != 200) {
-      //TODO: Criar uma exceção personalizada
-      throw Exception();
+      if (json.decode(response.body) == "jwt expired") {
+        throw TokenNotValidException();
+      }
+      throw HttpException(response.body);
     }
 
     List<Journal> result = [];
@@ -88,10 +93,15 @@ class JournalService {
       headers: {'Authorization': 'Bearer $token'},
     );
 
-    if (response.statusCode == 200) {
-      return true;
+    if (response.statusCode != 200) {
+      if (json.decode(response.body) == "jwt expired") {
+        throw TokenNotValidException();
+      }
+      throw HttpException(response.body);
     }
 
-    return false;
+    return true;
   }
 }
+
+class TokenNotValidException implements Exception {}

@@ -1,5 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_webapi_second_course/helpers/logout.dart';
 import 'package:flutter_webapi_second_course/screens/common/confirmation_dialog.dart';
+import 'package:flutter_webapi_second_course/screens/common/exeption_dialog.dart';
 import 'package:flutter_webapi_second_course/services/journal_service.dart';
 import 'package:uuid/uuid.dart';
 
@@ -164,25 +170,35 @@ class JournalCard extends StatelessWidget {
     ).then((value) {
       if (value != null) {
         if (value) {
-          journalService.delete(journal.id, token).then((value) {
-            if (value) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("Registro deletado com sucesso."),
-                  backgroundColor: Colors.green,
-                ),
-              );
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("Houve uma falha ao deletar."),
-                  backgroundColor: Colors.red,
-                ),
-              );
-            }
+          journalService.delete(journal.id, token).then(
+            (value) {
+              if (value) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text("Registro deletado com sucesso."),
+                    backgroundColor: Colors.green,
+                  ),
+                );
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text("Houve uma falha ao deletar."),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+              }
 
-            refreshFunction();
-          });
+              refreshFunction();
+            },
+          ).catchError((error) {
+            logout(context);
+          }, test: (error) => error is HttpException).catchError(
+            (error) {
+              var innerError = error as HttpException;
+              showExceptionDialog(context, content: innerError.message);
+            },
+            test: (error) => error is HttpException,
+          );
         }
       }
     });

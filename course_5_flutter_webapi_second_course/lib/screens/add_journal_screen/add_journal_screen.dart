@@ -1,6 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_webapi_second_course/helpers/logout.dart';
+import 'package:flutter_webapi_second_course/screens/common/exeption_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../helpers/weekday.dart';
@@ -65,7 +69,12 @@ class _AddJournalScreenState extends State<AddJournalScreen> {
             } else {
               Navigator.pop(context, DisposeStatus.error);
             }
-          });
+          }).catchError((error) {
+            logout(context);
+          }, test: (error) => error is HttpException).catchError((error) {
+            var innerError = error as HttpException;
+            showExceptionDialog(context, content: innerError.message);
+          }, test: (error) => error is HttpException);
         } else {
           journalService
               .edit(widget.journal.id, widget.journal, token)
@@ -75,7 +84,12 @@ class _AddJournalScreenState extends State<AddJournalScreen> {
             } else {
               Navigator.pop(context, DisposeStatus.error);
             }
-          });
+          }).catchError((error) {
+            logout(context);
+          }, test: (error) => error is HttpException).catchError((error) {
+            var innerError = error as HttpException;
+            showExceptionDialog(context, content: innerError.message);
+          }, test: (error) => error is HttpException);
         }
       }
     });

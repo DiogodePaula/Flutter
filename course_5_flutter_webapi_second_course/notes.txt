@@ -37,3 +37,19 @@ requisição HTTP, e obtivemos e adicionamos essa informação em todas as opera
 Deslogando o Usuário: Por fim, aprendemos que é necessário dar a opção para a pessoa usuária deslogar da sua conta. 
 Para isso, criamos um Drawer com um botão de sair. Ao ser clicado, esse botão limpa as informações guardadas no 
 Shared Preferences e chama a Tela de Login.
+
+-----------------------------------------------------------------------------------------------------------------
+
+Preparando Serviços com Exceções: Vimos que quando estamos lidando com comunicação com Web APIs, muita coisa pode dar 
+errada ou não sair como esperávamos. Por isso, é necessário lidar com esses problemas de forma a: ou oferecer uma solução 
+para a pessoa usuária, ou informá-la do que aconteceu da forma mais agradável possível. Para isso, criamos em nosso 
+serviços algumas exceções personalizadas para casos específicos que podemos tratar, e usamos a possibilidade de enviar 
+uma mensagem usando a HTTPException para situações generalistas.
+
+Tratando Exceções: Aprendemos que agora que estamos lançando exceções nos nossos serviços, se faz necessário revisitar 
+cada lugar onde usamos um método desses serviços e usar o método catchError do Future para notar se nossa operação 
+levantou ou não algum problema, e tratá-lo.
+
+Adicionando um Timeout: Percebemos que nossas requisições não podem esperar uma resposta do servidor indefinidamente e 
+para resolver isso, adicionamos um Timeout no nosso HTTP Client, e um TimeoutException será lançada caso o tempo que 
+definimos expire. Aproveitamos a estrutura de catchError que criamos anteriormente para tratar também esse caso.
