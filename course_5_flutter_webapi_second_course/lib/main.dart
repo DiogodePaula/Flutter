@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
       initialRoute: isLogged ? "home" : "login",
       routes: {
         "home": (context) => const HomeScreen(),
-        "login": (context) => LoginScreen(),
+        "login": (context) => const LoginScreen(),
       },
       onGenerateRoute: (routeSettings) {
         if (routeSettings.name == "add-journal") {

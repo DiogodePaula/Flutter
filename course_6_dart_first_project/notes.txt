@@ -1,0 +1,20 @@
+A função main
+
+Assim, a sintaxe, ou seja, como se escreve a função main em Dart é:
+
+void main() {
+  print('Hello, World!');
+}
+
+void: o tipo da função. No caso, é void, pois a função não vai devolver 
+nenhuma informação;
+
+main: o nome da função. O Dart busca pela função main para rodar a aplicação;
+
+(): dentro dos parêntesis ficam os parâmetros (valores ou dados) que queremos 
+passar para dentro de uma função. Se eles estiverem vazios, é que a função não 
+precisa de nenhum parâmetro adicional;
+
+{}: dentro das chaves ficam os trechos de código que queremos executar quando 
+chamar a função. Esse espaço entre chaves também é conhecido como “corpo da função”.
+=====================================================================================
